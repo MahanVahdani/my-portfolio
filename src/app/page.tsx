@@ -1,9 +1,16 @@
-import Image from "next/image";
+import { Container } from "@/components/ui/Container";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <h1 className="text-4xl font-bold">Hi, I’m Mahan 👋</h1>
-    </main>
+    <Container>
+      <section className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold">Hi, My name is Mahan 👋</h1>
+          <p className="text-gray-500 mt-4">
+            Frontend Developer (React / Next.js)
+          </p>
+        </div>
+      </section>
+    </Container>
   );
 }
