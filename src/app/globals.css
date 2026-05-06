@@ -3,12 +3,19 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #ffffff;
+  --background: #f8fafc;
   --foreground: #0f172a;
   --muted: #64748b;
 
   --primary: #14b8a6;
   --secondary: #38bdf8;
+
+  --surface: rgba(255, 255, 255, 0.62);
+  --surface-border: rgba(15, 23, 42, 0.08);
+
+  --glow-1: rgba(20, 184, 166, 0.3);
+  --glow-2: rgba(56, 189, 248, 0.28);
+  --glow-3: rgba(99, 102, 241, 0.18);
 }
 
 .dark {
@@ -18,19 +25,61 @@
 
   --primary: #2dd4bf;
   --secondary: #60a5fa;
+
+  --surface: rgba(15, 23, 42, 0.58);
+  --surface-border: rgba(226, 232, 240, 0.1);
+
+  --glow-1: rgba(45, 212, 191, 0.18);
+  --glow-2: rgba(96, 165, 250, 0.14);
+  --glow-3: rgba(168, 85, 247, 0.1);
 }
 
 @theme {
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
+  --color-surface: var(--surface);
+  --color-surface-border: var(--surface-border);
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply font-sans antialiased text-foreground;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    background:
+      radial-gradient(
+        circle at 15% 20%,
+        rgba(20, 184, 166, 0.25),
+        transparent 45%
+      ),
+      radial-gradient(
+        circle at 85% 25%,
+        rgba(56, 189, 248, 0.22),
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 50% 90%,
+        rgba(99, 102, 241, 0.14),
+        transparent 55%
+      ),
+      var(--background);
+
+    transition: background 400ms ease;
   }
 
   h1,
@@ -54,13 +103,26 @@
 
 @layer utilities {
   .glass {
-    @apply backdrop-blur-md border rounded-xl;
-    background: rgba(255, 255, 255, 0.6);
-    border-color: rgba(0, 0, 0, 0.08);
+    @apply rounded-2xl backdrop-blur-xl border;
+    background: var(--surface);
+    border-color: var(--surface-border);
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
 
-  .dark .glass {
-    background: rgba(15, 23, 42, 0.55);
-    border-color: rgba(255, 255, 255, 0.08);
+  .glass-hover {
+    @apply transition duration-300 ease-out;
   }
+
+  .glass-hover:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 24px 70px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+}
+
+body {
+  border: 28px solid red;
 }
