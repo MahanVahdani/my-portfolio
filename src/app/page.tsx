@@ -1,16 +1,24 @@
-import { Container } from "@/components/ui/Container";
+import Shell from "@/components/layout/Shell";
+import AboutSection from "@/components/sections/AboutSection";
+import ContactSection from "@/components/sections/ContactSection";
+import ExperienceSection from "@/components/sections/ExperienceSection";
+import HeroSection from "@/components/sections/HeroSection";
+import PlansSection from "@/components/sections/PlansSection";
+import ProjectsSection from "@/components/sections/ProjectsSection";
+import SkillsSection from "@/components/sections/SkillsSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
 
 export default function Home() {
   return (
-    <Container>
-      <section className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold">Hi, My name is Mahan 👋</h1>
-          <p className="text-gray-500 mt-4">
-            Frontend Developer (React / Next.js)
-          </p>
-        </div>
-      </section>
-    </Container>
+    <Shell>
+      <HeroSection />
+      <AboutSection />
+      <ExperienceSection />
+      <SkillsSection />
+      <ProjectsSection />
+      <TestimonialsSection />
+      <PlansSection />
+      <ContactSection />
+    </Shell>
   );
 }
