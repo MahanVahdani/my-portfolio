@@ -6,7 +6,7 @@ type GlassCardProps = {
 };
 
 const GlassCard = ({ children, className = "" }: GlassCardProps) => {
-  return <div className={`glass glass-hover ${className}`}>{children}</div>;
+  return <div className={`glass ${className}`}>{children}</div>;
 };
 
 export default GlassCard;
