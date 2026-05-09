@@ -5,7 +5,7 @@ import profile from "@/data/profile";
 
 const SidebarProfile = () => {
   return (
-    <GlassCard className="w-70 h-full p-6 flex flex-col justify-between text-center">
+    <GlassCard className="w-70 h-full p-6 flex flex-col justify-evenly text-center">
       {/* TOP */}
       <div className="flex flex-col items-center gap-4">
         {/* Avatar */}
@@ -26,13 +26,13 @@ const SidebarProfile = () => {
       </div>
 
       {/* MIDDLE */}
-      <div className="flex flex-col items-center gap-3">
+      <div className="flex flex-col items-center gap-3 mt-3">
         <ProfileSocialLinks links={profile.socialLinks} />
         <p className="text-sm text-muted">{profile.email}</p>
       </div>
 
       {/* BOTTOM */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 mt-3">
         <a
           href="#contact"
           className="inline-flex w-full items-center justify-center rounded-xl bg-primary px-5 py-3 text-sm font-medium text-black transition-all hover:scale-[1.02]"
