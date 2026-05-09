@@ -18,7 +18,7 @@ const Shell = ({ children }: { children: React.ReactNode }) => {
       {/* Main content */}
       <main
         className="
-        max-w-5xl px-4 lg:px-6 bg-amber-300
+        max-w-5xl px-4 lg:px-6
         py-10 lg:py-20 lg:ml-77.5 lg:mr-22.5
         "
       >
