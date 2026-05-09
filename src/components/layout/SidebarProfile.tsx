@@ -1,6 +1,7 @@
 import Image from "next/image";
 import GlassCard from "@/components/ui/GlassCard";
 import ProfileSocialLinks from "@/components/profile/ProfileSocialLinks";
+import CopyEmailButton from "@components/profile/CopyEmailButton";
 import profile from "@/data/profile";
 
 const SidebarProfile = () => {
@@ -28,7 +29,7 @@ const SidebarProfile = () => {
       {/* MIDDLE */}
       <div className="flex flex-col items-center gap-3 mt-3">
         <ProfileSocialLinks links={profile.socialLinks} />
-        <p className="text-sm text-muted">{profile.email}</p>
+        <CopyEmailButton email={profile.email} />
       </div>
 
       {/* BOTTOM */}
