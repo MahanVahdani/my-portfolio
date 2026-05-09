@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Script from "next/script";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -7,15 +9,30 @@ export const metadata: Metadata = {
     "Frontend Developer specializing in React and Next.js. Building modern, performant web applications.",
 };
 
-// src/app/layout.tsx
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full">
-      <body className="min-h-screen font-sans antialiased">{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`
+    const storedTheme = localStorage.getItem("theme");
+
+    const isDark =
+      storedTheme === "dark" ||
+      (
+        storedTheme !== "light" &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      );
+
+    document.documentElement.classList.toggle("dark", isDark);
+  `}
+        </Script>
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
