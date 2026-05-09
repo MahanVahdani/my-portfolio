@@ -16,6 +16,7 @@ const SidebarProfile = () => {
           className="object-contain"
           src={profile.avatar}
           alt={profile.name}
+          loading="eager"
           width={100}
           height={100}
         />
