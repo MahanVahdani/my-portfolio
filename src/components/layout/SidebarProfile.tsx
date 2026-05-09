@@ -9,7 +9,7 @@ const SidebarProfile = () => {
       {/* TOP */}
       <div className="flex flex-col items-center gap-4">
         {/* Avatar */}
-        <div className="h-28 w-28 overflow-hidden rounded-full bg-white flex items-center justify-center">
+        <div className="h-24 w-24 xl:h-28 xl:w-28 overflow-hidden rounded-full bg-white flex items-center justify-center">
           <Image
             src={profile.avatar}
             alt={profile.name}
@@ -40,7 +40,9 @@ const SidebarProfile = () => {
           Hire Me!
         </a>
 
-        <p className="text-xs text-muted">© 2026 Mahan. All Rights Reserved.</p>
+        <p className="text-[11px] xl:text-xs text-muted">
+          © 2026 Mahan. All Rights Reserved.
+        </p>
       </div>
     </GlassCard>
   );

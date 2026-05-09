@@ -18,7 +18,7 @@ const ProfileSocialLinks = ({ links }: ProfileSocialLinksProps) => {
             rel="noreferrer"
             aria-label={item.label}
             className="
-              flex h-10 w-10 items-center justify-center
+              flex h-10 w-8 xl:w-10 items-center justify-center
               rounded-xl
               text-foreground/70
               transition-all duration-300
