@@ -9,8 +9,6 @@ const ThemeToggle = () => {
     return document.documentElement.classList.contains("dark");
   });
 
-  console.log("isDark", isDark);
-
   const toggleTheme = () => {
     const root = document.documentElement;
     const next = !isDark;
@@ -31,9 +29,9 @@ const ThemeToggle = () => {
       <button
         onClick={toggleTheme}
         className="w-full h-11 flex
-      items-center justify-center transition-all
-      duration-300 rounded-xl
-      "
+        items-center justify-center transition-all
+        duration-300 rounded-xl
+        "
         aria-label="Toggle theme"
       >
         <div className="transition-all duration-300">
