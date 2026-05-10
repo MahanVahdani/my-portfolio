@@ -4,34 +4,34 @@ import SidebarProfile from "./SidebarProfile";
 
 const Shell = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="min-h-screen w-full flex flex-col lg:block">
-      {/* Left fixed area */}
-      <aside
-        className="
-          lg:fixed lg:left-6 lg:top-1/2 lg:-translate-y-1/2
-          w-full lg:h-120 lg:w-72 px-4 lg:px-0 pt-6 lg:pt-0
-        "
-      >
-        <SidebarProfile />
-      </aside>
+    <div className="min-h-screen w-full flex justify-center px-4">
+      {/* GLOBAL CONTAINER */}
+      <div className="w-full max-w-360 grid grid-cols-1 lg:grid-cols-[280px_1fr_80px] gap-8 py-10 lg:py-20">
+        {/* MOBILE FIRST + DESKTOP LEFT SIDEBAR */}
+        <div className="lg:contents">
+          {/* Mobile: show first */}
+          <div className="block lg:hidden">
+            <SidebarProfile />
+          </div>
 
-      {/* Main content */}
-      <main
-        className="
-        max-w-5xl px-4 lg:px-6
-        py-10 lg:py-20 lg:ml-77.5 lg:mr-22.5
-        "
-      >
-        {children}
-      </main>
+          {/* Desktop: left sidebar */}
+          <aside className="hidden lg:block">
+            <div className="sticky top-1/2 -translate-y-1/2 h-122">
+              <SidebarProfile />
+            </div>
+          </aside>
+        </div>
 
-      {/* Right fixed nav */}
-      <aside
-        className="fixed w-16 h-120 right-6 top-1/2 
-        -translate-y-1/2 z-40 hidden lg:flex flex-col items-center"
-      >
-        <SectionNavigator />
-      </aside>
+        {/* Main content */}
+        <main className="w-full">{children}</main>
+
+        {/* Right nav */}
+        <aside className="hidden lg:block">
+          <div className="sticky top-1/2 -translate-y-1/2 flex justify-center h-122">
+            <SectionNavigator />
+          </div>
+        </aside>
+      </div>
     </div>
   );
 };
