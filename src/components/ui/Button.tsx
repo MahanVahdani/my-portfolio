@@ -37,7 +37,7 @@ const Button = ({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200",
+        "inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-medium duration-200 transition-all hover:scale-[1.02] cursor-pointer",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         "disabled:pointer-events-none disabled:opacity-50",
         variantClasses[variant],

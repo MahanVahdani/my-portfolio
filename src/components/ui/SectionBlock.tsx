@@ -30,7 +30,7 @@ const SectionBlock = ({
         </h2>
 
         {description && (
-          <p className="max-w-2xl text-sm leading-relaxed text-foreground/80">
+          <p className="text-sm leading-relaxed text-foreground/80">
             {description}
           </p>
         )}

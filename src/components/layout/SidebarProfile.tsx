@@ -1,8 +1,9 @@
 import Image from "next/image";
 import GlassCard from "@ui/GlassCard";
-import ProfileSocialLinks from "@components/sections/profile/ProfileSocialLinks";
-import CopyEmailButton from "@components/sections/profile/CopyEmailButton";
 import profile from "@data/profile";
+import ProfileSocialLinks from "@components/sections/profile/ProfileSocialLinks";
+import ProfileHireButton from "@components/sections/profile/ProfileHireButton";
+import CopyButton from "@/components/ui/CopyButton";
 
 const SidebarProfile = () => {
   return (
@@ -32,20 +33,15 @@ const SidebarProfile = () => {
         </div>
 
         {/* Social Media */}
-        <div className="flex flex-col items-center mt-3 md:-mt-1 lg:mt-3">
+        <div className="flex flex-col items-center mt-3 md:-mt-1 lg:mt-3 lg:gap-1">
           <ProfileSocialLinks links={profile.socialLinks} />
-          <CopyEmailButton email={profile.email} />
+          <CopyButton value={profile.email}>{profile.email}</CopyButton>
         </div>
       </div>
 
       {/* BOTTOM */}
       <div className="flex flex-col gap-4 mt-6">
-        <a
-          href="#contact"
-          className="inline-flex w-full items-center justify-center rounded-xl bg-primary px-5 py-3 text-sm font-medium text-black transition-all hover:scale-[1.02]"
-        >
-          Hire Me!
-        </a>
+        <ProfileHireButton />
 
         <p className="text-[11px] xl:text-xs text-muted">
           © 2026 Mahan. All Rights Reserved.
