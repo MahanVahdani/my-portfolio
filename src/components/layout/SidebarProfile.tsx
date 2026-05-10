@@ -1,7 +1,7 @@
 import Image from "next/image";
 import GlassCard from "@ui/GlassCard";
-import ProfileSocialLinks from "@components/profile/ProfileSocialLinks";
-import CopyEmailButton from "@components/profile/CopyEmailButton";
+import ProfileSocialLinks from "@components/sections/profile/ProfileSocialLinks";
+import CopyEmailButton from "@components/sections/profile/CopyEmailButton";
 import profile from "@data/profile";
 
 const SidebarProfile = () => {
