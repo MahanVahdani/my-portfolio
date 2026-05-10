@@ -17,7 +17,7 @@ const CopyEmailButton = ({ email }: Props) => {
 
     setTimeout(() => {
       setCopied(false);
-    }, 2000);
+    }, 500);
   };
 
   return (

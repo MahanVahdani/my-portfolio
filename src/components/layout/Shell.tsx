@@ -9,7 +9,7 @@ const Shell = ({ children }: { children: React.ReactNode }) => {
       <aside
         className="
           lg:fixed lg:left-6 lg:top-1/2 lg:-translate-y-1/2
-          w-full lg:w-72 px-4 lg:px-0 pt-6 lg:pt-0
+          w-full lg:h-120 lg:w-72 px-4 lg:px-0 pt-6 lg:pt-0
         "
       >
         <SidebarProfile />
