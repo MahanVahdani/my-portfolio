@@ -3,7 +3,6 @@ import HeroActionButton from "@/components/sections/hero/HeroActionButton";
 
 const HeroSection = () => {
   return (
-    // text lenght ***
     <SectionBlock
       id="hello"
       mutedTitle="Hi, I’m Mahan Vahdani"
