@@ -1,29 +1,30 @@
 import Image from "next/image";
-import GlassCard from "@/components/ui/GlassCard";
-import ProfileSocialLinks from "@/components/profile/ProfileSocialLinks";
+import GlassCard from "@ui/GlassCard";
+import ProfileSocialLinks from "@components/profile/ProfileSocialLinks";
 import CopyEmailButton from "@components/profile/CopyEmailButton";
-import profile from "@/data/profile";
+import profile from "@data/profile";
 
 const SidebarProfile = () => {
   return (
     <GlassCard className="w-70 h-full p-6 flex flex-col justify-evenly text-center">
       {/* Avatar */}
       <div
-        className="h-24 w-24 xl:h-28 xl:w-28 overflow-hidden rounded-full
-       bg-white flex self-center"
+        className="
+          relative h-24 w-24 xl:h-28 xl:w-28 overflow-hidden
+          rounded-full bg-white self-center"
       >
         <Image
-          className="object-contain"
           src={profile.avatar}
           alt={profile.name}
-          loading="eager"
-          width={100}
-          height={100}
+          fill
+          priority
+          className="object-cover"
+          sizes="(max-width: 1280px) 96px, 112px"
         />
       </div>
 
       {/* Middle Part */}
-      <div className="mt-2 flex flex-col justify-between md:flex-row lg:flex-col">
+      <div className="flex flex-col justify-between md:flex-row lg:flex-col mt-2 lg:mt-0 lg:gap-4">
         {/* Name + Role */}
         <div className="space-y-1">
           <h2 className="text-xl font-semibold">{profile.name}</h2>
