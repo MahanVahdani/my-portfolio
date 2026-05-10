@@ -1,48 +1,54 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 
 const ThemeToggle = () => {
-  const [isDark, setIsDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
 
   useEffect(() => {
-    setIsDark(document.documentElement.classList.contains("dark"));
+    setMounted(true);
   }, []);
 
-  const toggleTheme = () => {
-    const next = !isDark;
+  if (!mounted) {
+    return (
+      <>
+        <div
+          className="h-11 w-full rounded-xl
+        flex items-center justify-center"
+        >
+          <Moon className="h-5 w-5 text-slate-700" />
+        </div>
 
-    setIsDark(next);
+        <div className="w-full border-b border-surface-border" />
+      </>
+    );
+  }
 
-    if (next) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  };
+  const isDark = resolvedTheme === "dark";
 
   return (
     <>
       <button
-        onClick={toggleTheme}
+        onClick={() => setTheme(isDark ? "light" : "dark")}
         className="
           h-11 w-full rounded-xl
           flex items-center justify-center
           transition-all duration-300
+
         "
         aria-label="Toggle theme"
       >
         {isDark ? (
           <Sun className="h-5 w-5 text-yellow-400" />
         ) : (
-          <Moon className="h-5 w-5 text-slate-700 dark:text-slate-200" />
+          <Moon className="h-5 w-5 text-slate-700" />
         )}
       </button>
 
-      <div className="w-full border-b" />
+      <div className="w-full border-b border-surface-border" />
     </>
   );
 };
