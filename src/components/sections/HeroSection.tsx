@@ -1,12 +1,21 @@
 import React from "react";
+import SectionBlock from "@ui/SectionBlock";
 
 const HeroSection = () => {
   return (
-    <section id="about" className="scroll-mt-24 py-20">
-      {/* <SectionBadge>About</SectionBadge>
-      <SectionTitle title="About Me" /> */}
-      <p>HeroSection</p>
-    </section>
+    <SectionBlock
+      id="about"
+      mutedTitle="Hi, I’m Mahan Vahdani"
+      accentTitle="Senior Frontend Developer"
+      description="
+          I build fast, clean, and scalable web experiences with Next.js and React. 
+          Focused on high-performance interfaces, thoughtful architecture,
+          and delivering measurable business impact.
+      "
+      className="scroll-mt-24 py-20"
+    >
+      <p>Hero Section</p>
+    </SectionBlock>
   );
 };
 
