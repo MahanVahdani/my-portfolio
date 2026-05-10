@@ -12,8 +12,8 @@ import {
   Mail,
 } from "lucide-react";
 
-import GlassCard from "@/components/ui/GlassCard";
-import ThemeToggle from "@/lib/theme/ThemeToggle";
+import GlassCard from "@ui/GlassCard";
+import ThemeToggle from "@lib/theme/ThemeToggle";
 
 type NavItem = {
   id: string;

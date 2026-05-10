@@ -13,6 +13,8 @@
   --surface: rgba(255, 255, 255, 0.62);
   --surface-border: rgba(15, 23, 42, 0.08);
 
+  --heading-muted: #334155;
+
   --glow-1: rgba(20, 184, 166, 0.3);
   --glow-2: rgba(56, 189, 248, 0.28);
   --glow-3: rgba(99, 102, 241, 0.18);
@@ -25,6 +27,8 @@
 
   --primary: #2dd4bf;
   --secondary: #60a5fa;
+
+  --heading-muted: #e2e8f0;
 
   --surface: rgba(15, 23, 42, 0.58);
   --surface-border: rgba(226, 232, 240, 0.1);
