@@ -5,7 +5,7 @@ import ExperienceSection from "@/components/sections/experience/ExperienceSectio
 import HeroSection from "@/components/sections/hero/HeroSection";
 import PlansSection from "@/components/sections/PlansSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
-import SkillsSection from "@/components/sections/SkillsSection";
+import SkillsSection from "@/components/sections/skill/SkillsSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 
 const Home = () => {
