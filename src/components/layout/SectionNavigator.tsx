@@ -27,7 +27,7 @@ const navItems: NavItem[] = [
   { id: "experiences", label: "Experiences", icon: BriefcaseBusiness },
   { id: "skills", label: "Skills", icon: Sparkles },
   { id: "projects", label: "Projects", icon: FolderOpen },
-  { id: "comments", label: "Comments", icon: MessageSquareQuote },
+  { id: "testimonials", label: "Testimonials", icon: MessageSquareQuote },
   { id: "plans", label: "Plans", icon: ChartColumn },
   { id: "contact", label: "Contact", icon: Mail },
 ];

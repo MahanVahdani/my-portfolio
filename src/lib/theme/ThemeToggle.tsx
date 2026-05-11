@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, CircleDashed } from "lucide-react";
 
 const ThemeToggle = () => {
   const [mounted, setMounted] = useState(false);
@@ -19,7 +19,7 @@ const ThemeToggle = () => {
           className="h-11 w-full rounded-xl
         flex items-center justify-center"
         >
-          <Moon className="h-5 w-5 text-slate-700" />
+          <CircleDashed className="h-5 w-5 text-slate-700" />
         </div>
 
         <div className="w-full border-b border-surface-border" />

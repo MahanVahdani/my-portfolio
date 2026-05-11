@@ -1,12 +1,15 @@
-import React from "react";
+import { ChartColumn } from "lucide-react";
+import SectionBlock from "@ui/SectionBlock";
 
 const PlansSection = () => {
   return (
-    <section id="plans" className="scroll-mt-24 py-20">
-      {/* <SectionBadge>About</SectionBadge>
-      <SectionTitle title="About Me" /> */}
-      <p>PlansSection</p>
-    </section>
+    <SectionBlock
+      id="plans"
+      icon={ChartColumn}
+      mutedTitle="plans"
+      accentTitle=""
+      description=""
+    />
   );
 };
 

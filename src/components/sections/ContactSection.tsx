@@ -1,12 +1,15 @@
-import React from "react";
+import { Mail } from "lucide-react";
+import SectionBlock from "@ui/SectionBlock";
 
 const ContactSection = () => {
   return (
-    <section id="contact" className="scroll-mt-24 py-20">
-      {/* <SectionBadge>About</SectionBadge>
-      <SectionTitle title="About Me" /> */}
-      <p>ContactSection</p>
-    </section>
+    <SectionBlock
+      id="contact"
+      icon={Mail}
+      mutedTitle="contact"
+      accentTitle=""
+      description=""
+    />
   );
 };
 

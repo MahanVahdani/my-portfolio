@@ -1,12 +1,15 @@
-import React from "react";
+import { BriefcaseBusiness } from "lucide-react";
+import SectionBlock from "@ui/SectionBlock";
 
 const ExperienceSection = () => {
   return (
-    <section id="experience" className="scroll-mt-24 py-20">
-      {/* <SectionBadge>About</SectionBadge>
-      <SectionTitle title="About Me" /> */}
-      <p>ExperienceSection</p>
-    </section>
+    <SectionBlock
+      id="experiences"
+      icon={BriefcaseBusiness}
+      mutedTitle="experiences"
+      accentTitle=""
+      description=""
+    />
   );
 };
 

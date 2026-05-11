@@ -1,12 +1,15 @@
-import React from "react";
+import { FolderOpen } from "lucide-react";
+import SectionBlock from "@ui/SectionBlock";
 
 const ProjectsSection = () => {
   return (
-    <section id="projects" className="scroll-mt-24 py-20">
-      {/* <SectionBadge>About</SectionBadge>
-      <SectionTitle title="About Me" /> */}
-      <p>ProjectsSection</p>
-    </section>
+    <SectionBlock
+      id="projects"
+      icon={FolderOpen}
+      mutedTitle="projects"
+      accentTitle=""
+      description=""
+    />
   );
 };
 

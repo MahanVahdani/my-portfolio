@@ -1,12 +1,15 @@
-import React from "react";
+import { Sparkles } from "lucide-react";
+import SectionBlock from "@ui/SectionBlock";
 
 const SkillsSection = () => {
   return (
-    <section id="skills" className="scroll-mt-24 py-20">
-      {/* <SectionBadge>About</SectionBadge>
-      <SectionTitle title="About Me" /> */}
-      <p>SkillsSection</p>
-    </section>
+    <SectionBlock
+      id="skills"
+      icon={Sparkles}
+      mutedTitle="skills"
+      accentTitle=""
+      description=""
+    />
   );
 };
 

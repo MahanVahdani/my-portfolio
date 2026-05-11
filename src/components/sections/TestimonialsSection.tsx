@@ -1,12 +1,15 @@
-import React from "react";
+import SectionBlock from "@ui/SectionBlock";
+import { MessageSquareQuote } from "lucide-react";
 
 const TestimonialsSection = () => {
   return (
-    <section id="testimonials" className="scroll-mt-24 py-20">
-      {/* <SectionBadge>About</SectionBadge>
-      <SectionTitle title="About Me" /> */}
-      <p>TestimonialsSection</p>
-    </section>
+    <SectionBlock
+      id="testimonials"
+      icon={MessageSquareQuote}
+      mutedTitle="testimonials"
+      accentTitle=""
+      description=""
+    />
   );
 };
 
