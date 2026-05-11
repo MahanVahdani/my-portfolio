@@ -12,7 +12,7 @@ const SidebarProfile = () => {
       <div
         className="
           relative h-24 w-24 xl:h-28 xl:w-28 overflow-hidden
-          rounded-full bg-white self-center"
+          rounded-2xl bg-white self-center"
       >
         <Image
           src={profile.avatar}
