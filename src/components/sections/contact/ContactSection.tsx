@@ -1,5 +1,6 @@
 import { Mail } from "lucide-react";
 import SectionBlock from "@ui/SectionBlock";
+import ContactForm from "@components/forms/ContactForm";
 
 const ContactSection = () => {
   return (
@@ -9,7 +10,9 @@ const ContactSection = () => {
       mutedTitle="contact"
       accentTitle=""
       description=""
-    />
+    >
+      <ContactForm />
+    </SectionBlock>
   );
 };
 

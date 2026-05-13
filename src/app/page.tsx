@@ -1,6 +1,6 @@
 import Shell from "@/components/layout/Shell";
 import AboutSection from "@/components/sections/about/AboutSection";
-import ContactSection from "@/components/sections/ContactSection";
+import ContactSection from "@/components/sections/contact/ContactSection";
 import ExperienceSection from "@/components/sections/experience/ExperienceSection";
 import HeroSection from "@/components/sections/hero/HeroSection";
 import PlansSection from "@/components/sections/PlansSection";
