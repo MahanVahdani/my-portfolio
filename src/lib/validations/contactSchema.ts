@@ -16,7 +16,7 @@ export const contactSchema = z.object({
   message: z
     .string()
     .min(20, "Message must be at least 20 characters")
-    .max(500, "Message must be less than 500 characters"),
+    .max(500, "Message must be 500 characters or less"),
 
   website: z.string().optional(),
 });
