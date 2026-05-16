@@ -4,9 +4,11 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 type ButtonVariant = "outlined" | "primary" | "secondary";
+type ButtonSize = "sm" | "md" | "lg";
 
 type ButtonProps = {
   variant?: ButtonVariant;
+  size?: ButtonSize;
   className?: string;
   children: React.ReactNode;
   type?: "button" | "submit" | "reset";
@@ -23,8 +25,15 @@ const variantClasses: Record<ButtonVariant, string> = {
     "bg-transparent text-foreground border border-surface-border hover:bg-foreground/5",
 };
 
+const sizeClasses: Record<ButtonSize, string> = {
+  sm: "px-4 py-2 text-sm rounded-lg",
+  md: "px-6 py-3 text-sm rounded-xl",
+  lg: "px-8 py-3.5 text-base rounded-xl",
+};
+
 const Button = ({
   variant = "primary",
+  size = "md",
   className,
   children,
   type = "button",
@@ -37,10 +46,12 @@ const Button = ({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-medium duration-200 transition-all hover:scale-[1.02] cursor-pointer",
+        "inline-flex items-center justify-center gap-2 font-medium duration-200 transition-all",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-        "disabled:pointer-events-none disabled:opacity-50",
+        "disabled:pointer-events-none disabled:opacity-50 hover:scale-[1.02] cursor-pointer",
+
         variantClasses[variant],
+        sizeClasses[size],
         className,
       )}
     >

@@ -7,9 +7,9 @@ const ContactSection = () => {
     <SectionBlock
       id="contact"
       icon={Mail}
-      mutedTitle="contact"
-      accentTitle=""
-      description=""
+      mutedTitle="Let's"
+      accentTitle="Work Together"
+      description="Based in Fethiye, Istanbul and open to international relocation. Available immediately for Senior Frontend Developer roles and interesting projects."
     >
       <ContactForm />
     </SectionBlock>

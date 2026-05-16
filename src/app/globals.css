@@ -163,3 +163,36 @@
     z-index: 100;
   }
 }
+
+/* ======================= */
+
+.grid-item {
+  grid-column: span var(--span, 12) / span var(--span, 12);
+}
+
+@media (min-width: 640px) {
+  .grid-item {
+    grid-column: span var(--sm, var(--span)) / span var(--sm, var(--span));
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-item {
+    grid-column: span var(--md, var(--sm, var(--span))) / span
+      var(--md, var(--sm, var(--span)));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-item {
+    grid-column: span var(--lg, var(--md, var(--sm, var(--span)))) / span
+      var(--lg, var(--md, var(--sm, var(--span))));
+  }
+}
+
+@media (min-width: 1280px) {
+  .grid-item {
+    grid-column: span var(--xl, var(--lg, var(--md, var(--sm, var(--span))))) /
+      span var(--xl, var(--lg, var(--md, var(--sm, var(--span)))));
+  }
+}
