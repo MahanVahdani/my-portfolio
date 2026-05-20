@@ -15,21 +15,26 @@ const CookieBanner = () => {
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY) as Consent;
 
+    // Show banner only if user has not made a choice yet
     if (!stored) {
       setVisible(true);
     }
   }, []);
 
-  const updateConsent = (value: "accepted" | "rejected") => {
+  const updateConsent = (value: Exclude<Consent, null>) => {
     localStorage.setItem(STORAGE_KEY, value);
 
+    // Update Google Consent Mode
     window.gtag?.("consent", "update", {
       analytics_storage: value === "accepted" ? "granted" : "denied",
       ad_storage: value === "accepted" ? "granted" : "denied",
+      ad_user_data: value === "accepted" ? "granted" : "denied",
+      ad_personalization: value === "accepted" ? "granted" : "denied",
     });
 
+    // Send first page view immediately after accept
     if (value === "accepted") {
-      window.gtag?.("config", process.env.NEXT_PUBLIC_GA_ID!, {
+      window.gtag?.("event", "page_view", {
         page_path: window.location.pathname,
       });
     }

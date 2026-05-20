@@ -7,6 +7,8 @@ const CookieSettingsButton = () => {
     window.gtag?.("consent", "update", {
       analytics_storage: "denied",
       ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
     });
 
     window.location.reload();

@@ -29,14 +29,23 @@ export default function RootLayout({
 
         <Script id="ga-consent" strategy="afterInteractive">
           {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              window.gtag = gtag;
+    window.dataLayer = window.dataLayer || [];
 
-              gtag('consent', 'default', {
-                analytics_storage: 'denied',
-                ad_storage: 'denied'
-          });
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+
+    gtag('js', new Date());
+
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+
+    gtag('config', '${GA_ID}', {
+      send_page_view: false
+    });
   `}
         </Script>
 
