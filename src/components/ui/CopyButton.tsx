@@ -29,7 +29,7 @@ const CopyButton = ({ value, className, children }: CopyButtonProps) => {
       type="button"
       onClick={handleCopy}
       className={cn(
-        "inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground",
+        "inline-flex items-center gap-2 text-sm text-muted cursor-pointer transition-colors hover:text-foreground",
         className,
       )}
       aria-label="Copy to clipboard"
