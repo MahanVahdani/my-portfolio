@@ -32,6 +32,7 @@ export async function POST(request: Request) {
 
     await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
+      // from: "Mahan Portfolio <contact@https://mahanvahdanidev.vercel.app>" ***
       to: "dev.vahdani@gmail.com",
 
       subject: `[Portfolio] ${subject}`,
