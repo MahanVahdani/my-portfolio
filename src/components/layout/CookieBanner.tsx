@@ -20,13 +20,19 @@ const CookieBanner = () => {
     }
   }, []);
 
-  const updateConsent = (value: Exclude<Consent, null>) => {
+  const updateConsent = (value: "accepted" | "rejected") => {
     localStorage.setItem(STORAGE_KEY, value);
 
     window.gtag?.("consent", "update", {
       analytics_storage: value === "accepted" ? "granted" : "denied",
       ad_storage: value === "accepted" ? "granted" : "denied",
     });
+
+    if (value === "accepted") {
+      window.gtag?.("config", process.env.NEXT_PUBLIC_GA_ID!, {
+        page_path: window.location.pathname,
+      });
+    }
 
     setVisible(false);
   };

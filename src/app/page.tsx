@@ -8,7 +8,7 @@ import PlansSection from "@/components/sections/PlansSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import SkillsSection from "@/components/sections/skill/SkillsSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import PageView from "@/lib/analytics/PageVeiw";
+import PageView from "@/lib/analytics/PageView";
 
 const Home = () => {
   return (
