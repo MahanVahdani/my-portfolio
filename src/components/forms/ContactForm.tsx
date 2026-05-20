@@ -15,6 +15,7 @@ import GlassCard from "@ui/GlassCard";
 import FormField from "@ui/FormField";
 import Grid from "@ui/Grid";
 import Button from "@ui/Button";
+import { trackEvent } from "@/lib/analytics";
 
 export default function ContactForm() {
   const {
@@ -29,19 +30,32 @@ export default function ContactForm() {
   });
 
   const onSubmit = async (data: ContactFormValues) => {
-    const promise = fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    }).then(async (res) => {
-      if (!res.ok) throw new Error("Failed to send message");
-      return res.json();
-    });
+    const promise = (async () => {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result?.message || "Failed to send message");
+      }
+
+      return result;
+    })();
 
     toast.promise(promise, {
       loading: "Sending your message...",
-      success: "Message sent successfully! I'll reply soon.",
-      error: "Failed to send message. Please try again.",
+      success: () => {
+        trackEvent("contact_form_submit", { status: "success" });
+        return "Message sent successfully! I'll reply soon.";
+      },
+      error: () => {
+        trackEvent("contact_form_submit", { status: "error" });
+        return "Failed to send message. Please try again.";
+      },
     });
 
     await promise;

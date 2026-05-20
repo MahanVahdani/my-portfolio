@@ -4,6 +4,7 @@ import profile from "@data/profile";
 import ProfileSocialLinks from "@components/sections/profile/ProfileSocialLinks";
 import ProfileHireButton from "@components/sections/profile/ProfileHireButton";
 import CopyButton from "@/components/ui/CopyButton";
+import CoockieSettingButton from "../sections/profile/CoockieSettingButton";
 
 const SidebarProfile = () => {
   return (
@@ -43,9 +44,7 @@ const SidebarProfile = () => {
       <div className="flex flex-col gap-4 mt-6">
         <ProfileHireButton />
 
-        <p className="text-[11px] xl:text-xs text-muted">
-          © 2026 Mahan. All Rights Reserved.
-        </p>
+        <CoockieSettingButton />
       </div>
     </GlassCard>
   );

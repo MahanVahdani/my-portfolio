@@ -2,6 +2,7 @@
 
 import { Download, Mail } from "lucide-react";
 import Button from "@ui/Button";
+import { trackEvent } from "@/lib/analytics";
 
 const HeroActionButtons = () => {
   const resumePath = "/Resume.pdf";
@@ -13,11 +14,19 @@ const HeroActionButtons = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+
+    trackEvent("cv_download_click", {
+      location: "hero",
+    });
   };
 
   const handleContact = () => {
     const element = document.getElementById("contact");
     element?.scrollIntoView({ behavior: "smooth" });
+
+    trackEvent("button_click", {
+      button_name: "contact_me",
+    });
   };
 
   return (
