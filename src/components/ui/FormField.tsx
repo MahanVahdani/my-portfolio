@@ -9,12 +9,18 @@ import { gridStyle } from "@lib/gridStyle";
 type FormFieldProps = {
   field: ContactField;
   register: UseFormRegister<ContactFormValues>;
+  value?: string;
   error?: string;
 };
 
-export default function FormField({ field, register, error }: FormFieldProps) {
+export default function FormField({
+  field,
+  value,
+  register,
+  error,
+}: FormFieldProps) {
   const isTextarea = field.type === "textarea";
-  const characterCount = 0;
+  const characterCount = value?.length ?? 0;
 
   const inputClasses = cn(
     "w-full rounded-xl border bg-transparent px-4 py-3 outline-none transition-all",

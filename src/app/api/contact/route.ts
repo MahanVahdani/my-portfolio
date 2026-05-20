@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-
 import { resend } from "@/lib/resend";
 import { contactSchema } from "@/lib/validations/contactSchema";
 
@@ -7,28 +6,35 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    // ✅ Validate with Zod (frontend + backend safety)
-    const validatedData = contactSchema.parse(body);
+    const result = contactSchema.safeParse(body);
 
-    const { name, email, subject, message, website } = validatedData;
-
-    // 🕳️ HONEYPOT CHECK (BOT DETECTION)
-    if (website && website.trim().length > 0) {
+    if (!result.success) {
       return NextResponse.json(
         {
           success: false,
-          message: "Bot detected",
+          message: "Invalid form data",
+          errors: result.error.flatten(),
         },
         { status: 400 },
       );
     }
 
-    // 📧 Send email via Resend
+    const { name, email, subject, message, website } = result.data;
+
+    if (website?.trim()) {
+      return NextResponse.json(
+        {
+          success: true,
+        },
+        { status: 200 },
+      );
+    }
+
     await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
       to: "dev.vahdani@gmail.com",
 
-      subject: `Portfolio Contact: ${subject}`,
+      subject: `[Portfolio] ${subject}`,
 
       replyTo: email,
 
@@ -42,12 +48,20 @@ export async function POST(request: Request) {
 
           <hr />
 
-          <p>${message}</p>
+          <p style="white-space: pre-wrap;">
+            ${message.replace(/\n/g, "<br />")}
+          </p>
         </div>
       `,
     });
 
-    return NextResponse.json({ success: true }, { status: 200 });
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Message sent successfully",
+      },
+      { status: 200 },
+    );
   } catch (error) {
     console.error("Contact API Error:", error);
 

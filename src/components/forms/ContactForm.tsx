@@ -21,6 +21,7 @@ export default function ContactForm() {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
@@ -50,6 +51,14 @@ export default function ContactForm() {
   return (
     <GlassCard className="p-6">
       <form onSubmit={handleSubmit(onSubmit)}>
+        <input
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          className="hidden"
+          {...register("website")}
+        />
+
         <Grid>
           {contactFormFields.map((field) => (
             <FormField
@@ -57,6 +66,7 @@ export default function ContactForm() {
               field={field}
               register={register}
               error={errors[field.name]?.message}
+              value={watch(field.name)}
             />
           ))}
         </Grid>
