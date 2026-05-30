@@ -96,7 +96,7 @@
 @layer utilities {
   .glass,
   .glass-card {
-    @apply relative overflow-hidden rounded-[20px] border transition-all duration-300;
+    @apply relative overflow-hidden border transition-all duration-300;
     width: 100%;
     /* line 2 */
     background: rgba(255, 255, 255, 0.24);

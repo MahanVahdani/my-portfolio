@@ -14,6 +14,7 @@ const SkillCard = ({ name, percentage, logo, className }: SkillCardProps) => {
     <GlassCard
       className={cn(
         `
+      rounded-2xl
       max-w-45
       flex flex-col items-center justify-center
       gap-4 p-5

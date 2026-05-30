@@ -48,7 +48,10 @@ const ThemeToggle = () => {
             )}
           />
         </div>
+
+        <p className="block ml-2 lg:hidden lg:m-0">Day/Night</p>
       </button>
+
       <div className="w-full border-b border-surface-border mt-1" />
     </div>
   );

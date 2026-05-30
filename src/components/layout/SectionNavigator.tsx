@@ -12,13 +12,17 @@ import {
   Mail,
 } from "lucide-react";
 
-import GlassCard from "@ui/GlassCard";
 import ThemeToggle from "@lib/theme/ThemeToggle";
 
 type NavItem = {
   id: string;
   label: string;
   icon: React.ComponentType<{ className?: string }>;
+};
+
+type SectionNavigatorProps = {
+  onCloseMenu?: () => void;
+  compact?: boolean;
 };
 
 const navItems: NavItem[] = [
@@ -32,7 +36,10 @@ const navItems: NavItem[] = [
   { id: "contact", label: "Contact", icon: Mail },
 ];
 
-const SectionNavigator = () => {
+const SectionNavigator = ({
+  onCloseMenu,
+  compact = false,
+}: SectionNavigatorProps) => {
   const [activeId, setActiveId] = useState("hello");
 
   useEffect(() => {
@@ -72,48 +79,48 @@ const SectionNavigator = () => {
       behavior: "smooth",
       block: "start",
     });
+
+    onCloseMenu?.();
   };
 
   return (
-    <GlassCard className="p-2">
-      <nav
-        aria-label="Section navigation"
-        className="flex flex-col items-center gap-2"
-      >
-        <ThemeToggle />
+    <nav
+      aria-label="Section navigation"
+      className="flex flex-col items-start gap-2 px-4 lg:px-2"
+    >
+      <ThemeToggle />
 
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          const isActive = activeId === item.id;
+      {navItems.map((item) => {
+        const Icon = item.icon;
+        const isActive = activeId === item.id;
 
-          return (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => scrollToSection(item.id)}
-              aria-label={item.label}
-              aria-current={isActive ? "true" : undefined}
-              className={`group relative flex h-11 w-11 items-center justify-center rounded-2xl transition-all duration-200 ${
-                isActive
-                  ? "bg-primary/15 text-primary shadow-sm"
-                  : "text-foreground/60 hover:bg-foreground/5 hover:text-foreground"
-              }`}
-            >
-              <Icon className="h-5 w-5" />
+        return (
+          <button
+            key={item.id}
+            type="button"
+            onClick={() => scrollToSection(item.id)}
+            aria-current={isActive ? "location" : undefined}
+            className={`group relative flex h-11 items-center rounded-2xl px-3 transition-all duration-200 ${
+              compact ? "w-11 justify-center px-0" : "w-full justify-start"
+            } ${
+              isActive
+                ? "bg-primary/15 text-primary shadow-sm"
+                : "text-foreground/60 hover:bg-foreground/5 hover:text-foreground"
+            }`}
+          >
+            <Icon className="h-5 w-5 shrink-0" />
 
-              <span
-                className="pointer-events-none absolute right-full top-1/2 mr-3 hidden 
-              -translate-y-1/2 whitespace-nowrap rounded-xl border 
-              border-white/10 bg-slate-950/90 px-3 py-1.5 text-xs text-white 
-              shadow-lg group-hover:block group-focus-visible:block dark:bg-slate-900/95"
-              >
+            {!compact && <span className="ml-2 text-sm">{item.label}</span>}
+
+            {compact && (
+              <span className="pointer-events-none absolute right-full top-1/2 mr-3 hidden -translate-y-1/2 whitespace-nowrap rounded-xl border border-white/10 bg-slate-950/90 px-3 py-1.5 text-xs text-white shadow-lg group-hover:block group-focus-visible:block dark:bg-slate-900/95">
                 {item.label}
               </span>
-            </button>
-          );
-        })}
-      </nav>
-    </GlassCard>
+            )}
+          </button>
+        );
+      })}
+    </nav>
   );
 };
 

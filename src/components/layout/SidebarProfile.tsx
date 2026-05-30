@@ -8,7 +8,7 @@ import CoockieSettingButton from "../sections/profile/CoockieSettingButton";
 
 const SidebarProfile = () => {
   return (
-    <GlassCard className="w-70 h-full p-6 flex flex-col justify-evenly text-center">
+    <GlassCard className="w-70 h-full p-6 rounded-2xl flex flex-col justify-evenly text-center">
       {/* Avatar */}
       <div
         className="

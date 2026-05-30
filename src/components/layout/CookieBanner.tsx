@@ -49,7 +49,7 @@ const CookieBanner = () => {
       {/* backdrop */}
       <div className="absolute inset-0 bg-black/40 backdrop-blur-md" />
 
-      <GlassCard className="relative z-10 w-full max-w-md p-6 space-y-4">
+      <GlassCard className="relative z-10 w-full max-w-md p-6 space-y-4 rounded-2xl">
         <h2 className="text-lg font-semibold">We use cookies 🍪</h2>
 
         <p className="text-sm opacity-80 leading-relaxed">

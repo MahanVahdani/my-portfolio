@@ -63,7 +63,7 @@ export default function ContactForm() {
   };
 
   return (
-    <GlassCard className="p-6">
+    <GlassCard className="p-6 rounded-2xl">
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           type="text"

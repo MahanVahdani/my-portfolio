@@ -1,36 +1,34 @@
-import React from "react";
-import SectionNavigator from "./SectionNavigator";
-import SidebarProfile from "./SidebarProfile";
+import type { ReactNode } from "react";
+import SectionNavigator from "@/components/layout/SectionNavigator";
+import SidebarProfile from "@/components/layout/SidebarProfile";
+import SidebarMobile from "@/components/layout/SidebarMobile";
+import GlassCard from "@/components/ui/GlassCard";
 
-const Shell = ({ children }: { children: React.ReactNode }) => {
+const Shell = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="min-h-screen w-full flex justify-center px-4">
-      {/* GLOBAL CONTAINER */}
-      <div className="w-full max-w-360 grid grid-cols-1 lg:grid-cols-[280px_1fr_80px] gap-8 py-10 lg:py-20">
-        {/* MOBILE FIRST + DESKTOP LEFT SIDEBAR */}
-        <div className="lg:contents">
-          {/* Mobile: show first */}
-          <div className="block lg:hidden">
-            <SidebarProfile />
-          </div>
-
-          {/* Desktop: left sidebar */}
-          <aside className="hidden lg:block">
-            <div className="sticky top-1/2 -translate-y-1/2 h-122">
-              <SidebarProfile />
-            </div>
-          </aside>
+    <div className="flex min-h-screen w-full justify-center px-4">
+      <div className="grid w-full grid-cols-1 gap-8 py-10 lg:grid-cols-[280px_minmax(0,1fr)_80px] lg:py-20">
+        <div className="block lg:hidden">
+          <SidebarProfile />
         </div>
 
-        {/* Main content */}
-        <main className="w-full">{children}</main>
-
-        {/* Right nav */}
         <aside className="hidden lg:block">
-          <div className="sticky top-1/2 -translate-y-1/2 flex justify-center h-122">
-            <SectionNavigator />
+          <div className="sticky top-1/2 h-122 -translate-y-1/2">
+            <SidebarProfile />
           </div>
         </aside>
+
+        <main className="w-full min-w-0">{children}</main>
+
+        <aside className="hidden lg:block">
+          <div className="sticky top-1/2 flex h-122 -translate-y-1/2 justify-center">
+            <GlassCard className="rounded-2xl p-2">
+              <SectionNavigator compact />
+            </GlassCard>
+          </div>
+        </aside>
+
+        <SidebarMobile />
       </div>
     </div>
   );

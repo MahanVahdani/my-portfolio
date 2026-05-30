@@ -19,7 +19,7 @@ const ExperienceCard = ({
   achievements,
 }: ExperienceCardProps) => {
   return (
-    <GlassCard className="p-6 space-y-6 hover:-translate-y-1 transition-transform duration-300">
+    <GlassCard className="p-6 rounded-2xl space-y-6 hover:-translate-y-1 transition-transform duration-300">
       {/* Header */}
       <div className="flex items-start gap-4">
         {/* Logo */}
