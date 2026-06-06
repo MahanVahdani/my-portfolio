@@ -108,7 +108,6 @@ const SectionNavigator = ({
             }`}
           >
             <Icon className="h-5 w-5 shrink-0" />
-
             {!compact && <span className="ml-2 text-sm">{item.label}</span>}
 
             {compact && (
