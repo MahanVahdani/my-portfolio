@@ -32,7 +32,6 @@ const navItems: NavItem[] = [
   { id: "skills", label: "Skills", icon: Sparkles },
   { id: "projects", label: "Projects", icon: FolderOpen },
   { id: "testimonials", label: "Testimonials", icon: MessageSquareQuote },
-  { id: "plans", label: "Plans", icon: ChartColumn },
   { id: "contact", label: "Contact", icon: Mail },
 ];
 
@@ -86,7 +85,7 @@ const SectionNavigator = ({
   return (
     <nav
       aria-label="Section navigation"
-      className="flex flex-col items-start gap-2 px-4 lg:px-2"
+      className="flex flex-col items-start justify-evenly h-full gap-2 px-4 lg:px-2"
     >
       <ThemeToggle />
 
