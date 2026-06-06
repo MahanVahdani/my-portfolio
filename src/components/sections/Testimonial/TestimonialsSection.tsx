@@ -21,7 +21,7 @@ const TestimonialsSection = () => {
     >
       <Carousel
         data={testimonials}
-        wrapperClassName="mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
+        wrapperClassName="md:mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] lg:mask-none xl:mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
         modules={[EffectCoverflow, Pagination, Autoplay]}
         effect="coverflow"
         centeredSlides={true}
