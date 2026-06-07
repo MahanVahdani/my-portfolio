@@ -20,7 +20,7 @@ const SidebarMobile = () => {
       >
         <div className="flex h-full flex-col p-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-lg font-semibold">mahan</h1>
+            <h1 className="text-lg font-semibold">makhan</h1>
 
             <button type="button" onClick={closeMenu} aria-label="Close menu">
               |||
