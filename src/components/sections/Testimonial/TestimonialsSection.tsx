@@ -15,9 +15,9 @@ const TestimonialsSection = () => {
     <SectionBlock
       id="testimonials"
       icon={MessageSquareQuote}
-      mutedTitle="What People"
-      accentTitle="Say"
-      description=""
+      mutedTitle="Don't take my"
+      accentTitle="Word for it"
+      description="Real feedback from clients and colleagues I've had the pleasure to work with."
     >
       <Carousel
         data={testimonials}
