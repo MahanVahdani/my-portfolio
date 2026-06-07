@@ -29,7 +29,7 @@ const ThemeToggle = () => {
       <button
         onClick={() => setTheme(isDark ? "light" : "dark")}
         className={cn(
-          "h-11 w-full rounded-xl flex items-center justify-center transition-all duration-500",
+          "h-11 w-full rounded-xl flex items-center px-2 justify-start lg:justify-center transition-all duration-500",
           "hover:bg-primary/10 group active:scale-95",
         )}
         aria-label="Toggle theme"

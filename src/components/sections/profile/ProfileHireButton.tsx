@@ -3,17 +3,26 @@
 import { trackEvent } from "@/lib/analytics";
 import Button from "@ui/Button";
 
-const ProfileHireButton = () => {
-  const scrollToContact = () => {
-    document.getElementById("plans")?.scrollIntoView({ behavior: "smooth" });
+interface ProfileHireButtonProps {
+  onCloseMenu?: () => void;
+}
+
+const ProfileHireButton = ({ onCloseMenu }: ProfileHireButtonProps) => {
+  const handleClick = () => {
+    const element = document.getElementById("contact");
+    element?.scrollIntoView({ behavior: "smooth" });
 
     trackEvent("button_click", {
-      button_name: "hire_me",
+      button_name: "contact_me",
     });
+
+    if (onCloseMenu) {
+      onCloseMenu();
+    }
   };
 
   return (
-    <Button variant="primary" onClick={scrollToContact}>
+    <Button variant="primary" onClick={handleClick}>
       Hire Me
     </Button>
   );
