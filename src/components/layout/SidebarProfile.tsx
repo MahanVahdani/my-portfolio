@@ -1,10 +1,9 @@
 import Image from "next/image";
 import GlassCard from "@ui/GlassCard";
 import profile from "@data/profile";
-import ProfileSocialLinks from "@components/sections/profile/ProfileSocialLinks";
 import ProfileHireButton from "@components/sections/profile/ProfileHireButton";
-import CopyButton from "@/components/ui/CopyButton";
-import CoockieSettingButton from "../sections/profile/CoockieSettingButton";
+import ProfileDetails from "../sections/profile/ProfileDetails";
+import CoockieSettingButton from "@components/sections/profile/CoockieSettingButton";
 
 const SidebarProfile = () => {
   return (
@@ -27,17 +26,7 @@ const SidebarProfile = () => {
 
       {/* Middle Part */}
       <div className="flex flex-col justify-between md:flex-row lg:flex-col mt-2 lg:mt-0 lg:gap-4">
-        {/* Name + Role */}
-        <div className="space-y-1">
-          <h2 className="text-xl font-semibold">{profile.name}</h2>
-          <p className="text-sm text-muted">{profile.role}</p>
-        </div>
-
-        {/* Social Media */}
-        <div className="flex flex-col items-center mt-3 md:-mt-1 lg:mt-3 lg:gap-1">
-          <ProfileSocialLinks links={profile.socialLinks} />
-          <CopyButton value={profile.email}>{profile.email}</CopyButton>
-        </div>
+        <ProfileDetails />
       </div>
 
       {/* BOTTOM */}
