@@ -18,15 +18,6 @@ export const portfolioProjects: Project[] = [
     link: "https://status.aqayepardakht.ir",
   },
   {
-    id: 1,
-    name: "Aqaye Pardakht",
-    logo: "/images/companies/aqa.jpeg",
-    image: "/images/projects/AqaStatus.jpeg",
-    description:
-      "Built a full-stack dashboard using React, Next.js, and Prisma.",
-    link: "https://status.aqayepardakht.ir",
-  },
-  {
     id: 2,
     name: "Aqaye Pardakht",
     logo: "/images/companies/aqa.jpeg",
@@ -46,6 +37,15 @@ export const portfolioProjects: Project[] = [
   },
   {
     id: 4,
+    name: "Aqaye Pardakht",
+    logo: "/images/companies/aqa.jpeg",
+    image: "/images/projects/AqaStatus.jpeg",
+    description:
+      "Built a full-stack dashboard using React, Next.js, and Prisma.",
+    link: "https://status.aqayepardakht.ir",
+  },
+  {
+    id: 5,
     name: "Aqaye Pardakht",
     logo: "/images/companies/aqa.jpeg",
     image: "/images/projects/AqaStatus.jpeg",
