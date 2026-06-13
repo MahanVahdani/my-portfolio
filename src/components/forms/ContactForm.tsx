@@ -14,6 +14,7 @@ import { contactFormFields } from "@data/contact";
 import GlassCard from "@ui/GlassCard";
 import FormField from "@ui/FormField";
 import Grid from "@ui/Grid";
+import GridItem from "@ui/GridItem";
 import Button from "@ui/Button";
 import { trackEvent } from "@/lib/analytics";
 
@@ -75,13 +76,15 @@ export default function ContactForm() {
 
         <Grid>
           {contactFormFields.map((field) => (
-            <FormField
-              key={field.name}
-              field={field}
-              register={register}
-              error={errors[field.name]?.message}
-              value={watch(field.name)}
-            />
+            <GridItem key={field.name} gridSpan={field.gridSpan}>
+              <FormField
+                key={field.name}
+                field={field}
+                register={register}
+                error={errors[field.name]?.message}
+                value={watch(field.name)}
+              />
+            </GridItem>
           ))}
         </Grid>
 

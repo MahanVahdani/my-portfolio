@@ -4,7 +4,6 @@ import { UseFormRegister } from "react-hook-form";
 import { ContactFormValues } from "@/lib/validations/contactSchema";
 import { ContactField } from "@/data/contact";
 import { cn } from "@/lib/utils";
-import { gridStyle } from "@lib/gridStyle";
 
 type FormFieldProps = {
   field: ContactField;
@@ -31,7 +30,7 @@ export default function FormField({
   );
 
   return (
-    <div className="grid-item space-y-2" style={gridStyle(field.gridSpan)}>
+    <div className="space-y-2">
       <label
         htmlFor={field.name}
         className="block text-sm font-medium text-foreground"

@@ -1,5 +1,7 @@
 import { FolderOpen } from "lucide-react";
 import SectionBlock from "@ui/SectionBlock";
+import Grid from "@ui/Grid";
+import GridItem from "@ui/GridItem";
 import ProjectCard from "@components/sections/projects/ProjectCard";
 import { portfolioProjects } from "@/data/projects";
 
@@ -12,18 +14,19 @@ const ProjectsSection = () => {
       accentTitle="Built"
       description="A collection of meaningful projects where I helped turn ideas into scalable, high-performance digital experiences."
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <Grid className="gap-y-8">
         {portfolioProjects.map((project) => (
-          <ProjectCard
-            key={project.id}
-            name={project.name}
-            logo={project.logo}
-            image={project.image}
-            description={project.description}
-            link={project.link}
-          />
+          <GridItem key={project.id} gridSpan={project.gridSpan}>
+            <ProjectCard
+              name={project.name}
+              logo={project.logo}
+              image={project.image}
+              description={project.description}
+              link={project.link}
+            />
+          </GridItem>
         ))}
-      </div>
+      </Grid>
     </SectionBlock>
   );
 };
