@@ -39,7 +39,7 @@ const socialLinks: SocialLink[] = [
 ];
 
 const profile: Profile = {
-  avatar: "/images/profile.jpg",
+  avatar: "/images/profile.png",
   name: "Mahan Vahdani",
   role: "Frontend Developer",
   email: "dev.vahdani@gmail.com",

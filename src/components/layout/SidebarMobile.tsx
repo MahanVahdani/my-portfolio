@@ -75,7 +75,7 @@ const SidebarMobile = () => {
                       fill
                       priority
                       className="object-cover"
-                      sizes="24px"
+                      sizes="(max-width: 1280px) 192px, 224px"
                     />
                   </div>
 

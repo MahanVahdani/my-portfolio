@@ -17,11 +17,11 @@ const SidebarProfile = () => {
       >
         <Image
           src={profile.avatar}
-          alt={profile.name}
+          alt={`${profile.name}'s profile avatar`}
           fill
           priority
           className="object-cover"
-          sizes="(max-width: 1280px) 96px, 112px"
+          sizes="(max-width: 1280px) 192px, 224px"
         />
       </div>
 
