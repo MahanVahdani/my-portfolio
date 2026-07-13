@@ -13,7 +13,7 @@ export interface Project {
 export const portfolioProjects: Project[] = [
   {
     id: 1,
-    name: "Uptime Dashboard",
+    name: "Aqaye Pardakht",
     logo: "/images/companies/aqa.jpeg",
     image: "/images/projects/AqayePardakht_Status.png",
     description:
@@ -23,12 +23,12 @@ export const portfolioProjects: Project[] = [
   },
   {
     id: 2,
-    name: "FinTech User Panel",
+    name: "Aqaye Pardakht",
     logo: "/images/companies/aqa.jpeg",
     image: "/images/projects/AqayePardakht_Panel.png",
     description:
       "High-performance fintech tools including a modern user panel, reusable ticketing chat, interactive dashboards, and automated CI/CD pipelines.",
-    link: "#",
+    link: "https://panel.aqayepardakht.ir",
     gridSpan: { md: 6, lg: 12, xl: 6 },
   },
   {
@@ -38,17 +38,17 @@ export const portfolioProjects: Project[] = [
     image: "/images/projects/Rivas_Panel.png",
     description:
       "Complete redesign and rebuild of the company website and user panel. Delivered modern, responsive websites for multiple clients with improved UX and performance.",
-    link: "#",
+    link: "https://rivasit.com/",
     gridSpan: { md: 6, lg: 12, xl: 6 },
   },
   {
     id: 4,
-    name: "Way2Connect",
+    name: "Dariche-zehn Web Agency",
     logo: "/images/companies/dariche.jpeg",
     image: "/images/projects/Way2Connect.png",
     description:
       "Multi-tenant communication platform with real-time chat, peer-to-peer video calls, screen sharing, session management, and real-time analytics dashboard.",
-    link: "#",
+    link: "https://way2connect.co/",
     gridSpan: { md: 6, lg: 12, xl: 6 },
   },
 ];
