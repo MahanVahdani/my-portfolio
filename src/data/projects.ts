@@ -38,7 +38,7 @@ export const portfolioProjects: Project[] = [
     image: "/images/projects/Rivas_Panel.png",
     description:
       "Complete redesign and rebuild of the company website and user panel. Delivered modern, responsive websites for multiple clients with improved UX and performance.",
-    link: "https://rivasit.com/",
+    link: "https://rivasit.com",
     gridSpan: { md: 6, lg: 12, xl: 6 },
   },
   {
@@ -48,7 +48,7 @@ export const portfolioProjects: Project[] = [
     image: "/images/projects/Way2Connect.png",
     description:
       "Multi-tenant communication platform with real-time chat, peer-to-peer video calls, screen sharing, session management, and real-time analytics dashboard.",
-    link: "https://way2connect.co/",
+    link: "https://way2connect.co",
     gridSpan: { md: 6, lg: 12, xl: 6 },
   },
 ];
