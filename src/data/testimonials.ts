@@ -41,7 +41,7 @@ export const testimonials: TestimonialType[] = [
   },
   {
     name: "Masoomeh Mokhtari",
-    image: "/images/testimonials/Mokhtari.jpeg",
+    image: "/images/testimonials/Mokhtari.png",
     role: "Software Engineer",
     company: "Freelancer",
     comment:
