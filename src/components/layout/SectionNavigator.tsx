@@ -8,7 +8,6 @@ import {
   Sparkles,
   FolderOpen,
   MessageSquareQuote,
-  ChartColumn,
   Mail,
 } from "lucide-react";
 
@@ -42,37 +41,51 @@ const SectionNavigator = ({
   const [activeId, setActiveId] = useState("hello");
 
   useEffect(() => {
-    const sections = navItems
-      .map((item) => document.getElementById(item.id))
-      .filter(Boolean) as HTMLElement[];
+    const handleScroll = () => {
+      const sections = navItems
+        .map((item) => document.getElementById(item.id))
+        .filter(Boolean) as HTMLElement[];
 
-    if (!sections.length) return;
+      if (!sections.length) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      const scrollY = window.scrollY;
+      const isAtBottom =
+        Math.ceil(window.innerHeight + scrollY) >=
+        document.documentElement.scrollHeight - 100;
 
-        if (visible?.target?.id) {
-          setActiveId(visible.target.id);
+      if (isAtBottom) {
+        setActiveId(navItems[navItems.length - 1].id);
+        return;
+      }
+
+      const tripwire = scrollY + window.innerHeight / 3;
+
+      let currentActiveId = sections[0].id;
+
+      for (const section of sections) {
+        if (section.offsetTop <= tripwire) {
+          currentActiveId = section.id;
         }
-      },
-      {
-        root: null,
-        threshold: 0.35,
-        rootMargin: "-20% 0px -55% 0px",
-      },
-    );
+      }
 
-    sections.forEach((section) => observer.observe(section));
+      setActiveId(currentActiveId);
+    };
 
-    return () => observer.disconnect();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    const timeoutId = setTimeout(handleScroll, 100);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
     if (!section) return;
+
+    setActiveId(id);
 
     section.scrollIntoView({
       behavior: "smooth",
