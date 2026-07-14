@@ -1,21 +1,21 @@
 import { NextResponse } from "next/server";
 import { resend } from "@/lib/resend";
 import { contactSchema } from "@/lib/validations/contactSchema";
-// import { Ratelimit } from "@upstash/ratelimit";
-// import { Redis } from "@upstash/redis";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 
-// --- TEMPORARILY DISABLED FOR TESTING ---
-// const redis = new Redis({
-//   url: process.env.UPSTASH_REDIS_REST_URL!,
-//   token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-// });
-//
-// const ratelimit = new Ratelimit({
-//   redis,
-//   limiter: Ratelimit.slidingWindow(2, "1 h"),
-//   analytics: true,
-//   prefix: "@upstash/ratelimit",
-// });
+// Initialize Redis and the Rate Limiter outside the request handler
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+});
+
+const ratelimit = new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(2, "1 h"),
+  analytics: true,
+  prefix: "@upstash/ratelimit",
+});
 
 export async function POST(request: Request) {
   try {
@@ -27,27 +27,26 @@ export async function POST(request: Request) {
       request.headers.get("x-vercel-ip-country") ?? "Unknown Country";
     const location = `${city}, ${country}`;
 
-    // --- TEMPORARILY DISABLED FOR TESTING ---
-    // const { success, limit, reset, remaining } = await ratelimit.limit(
-    //   `contact_form_${ip}`,
-    // );
-    //
-    // if (!success) {
-    //   return NextResponse.json(
-    //     {
-    //       success: false,
-    //       message: "Too many requests. Please try again later.",
-    //     },
-    //     {
-    //       status: 429,
-    //       headers: {
-    //         "X-RateLimit-Limit": limit.toString(),
-    //         "X-RateLimit-Remaining": remaining.toString(),
-    //         "X-RateLimit-Reset": reset.toString(),
-    //       },
-    //     },
-    //   );
-    // }
+    const { success, limit, reset, remaining } = await ratelimit.limit(
+      `contact_form_${ip}`,
+    );
+
+    if (!success) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Too many requests. Please try again later.",
+        },
+        {
+          status: 429,
+          headers: {
+            "X-RateLimit-Limit": limit.toString(),
+            "X-RateLimit-Remaining": remaining.toString(),
+            "X-RateLimit-Reset": reset.toString(),
+          },
+        },
+      );
+    }
 
     const body = await request.json();
     const result = contactSchema.safeParse(body);
@@ -81,7 +80,7 @@ export async function POST(request: Request) {
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Subject:</strong> ${subject}</p>
-          <p><strong>📍 Sent from:</strong> ${location}</p>
+          <p><strong>Sent from:</strong> ${location}</p>
           <hr />
           <p style="white-space: pre-wrap; font-size: 16px;">
             ${message}
