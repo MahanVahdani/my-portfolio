@@ -1,11 +1,48 @@
 import { NextResponse } from "next/server";
 import { resend } from "@/lib/resend";
 import { contactSchema } from "@/lib/validations/contactSchema";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
+
+// Initialize Redis and the Rate Limiter outside the request handler
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+});
+
+const ratelimit = new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(2, "1 h"),
+  analytics: true,
+  prefix: "@upstash/ratelimit",
+});
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    const ip = request.headers.get("x-forwarded-for") ?? "127.0.0.1";
 
+    const { success, limit, reset, remaining } = await ratelimit.limit(
+      `contact_form_${ip}`,
+    );
+
+    if (!success) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Too many requests. Please try again later.",
+        },
+        {
+          status: 429,
+          headers: {
+            "X-RateLimit-Limit": limit.toString(),
+            "X-RateLimit-Remaining": remaining.toString(),
+            "X-RateLimit-Reset": reset.toString(),
+          },
+        },
+      );
+    }
+
+    const body = await request.json();
     const result = contactSchema.safeParse(body);
 
     if (!result.success) {
@@ -21,56 +58,48 @@ export async function POST(request: Request) {
 
     const { name, email, subject, message, website } = result.data;
 
+    // Honeypot check
     if (website?.trim()) {
-      return NextResponse.json(
-        {
-          success: true,
-        },
-        { status: 200 },
-      );
+      return NextResponse.json({ success: true }, { status: 200 });
     }
 
-    await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
       // from: "Mahan Portfolio <contact@https://mahanvahdanidev.vercel.app>" ***
       to: "dev.vahdani@gmail.com",
 
       subject: `[Portfolio] ${subject}`,
-
       replyTo: email,
-
       html: `
         <div style="font-family: sans-serif; line-height: 1.6;">
           <h2>📩 New Portfolio Message</h2>
-
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Subject:</strong> ${subject}</p>
-
           <hr />
-
-          <p style="white-space: pre-wrap;">
-            ${message.replace(/\n/g, "<br />")}
+          <p style="white-space: pre-wrap; font-size: 16px;">
+            ${message}
           </p>
         </div>
       `,
     });
 
+    if (error) {
+      console.error("Resend API Error:", error);
+      return NextResponse.json(
+        { success: false, message: "Failed to send email." },
+        { status: 400 },
+      );
+    }
+
     return NextResponse.json(
-      {
-        success: true,
-        message: "Message sent successfully",
-      },
+      { success: true, message: "Message sent successfully" },
       { status: 200 },
     );
   } catch (error) {
     console.error("Contact API Error:", error);
-
     return NextResponse.json(
-      {
-        success: false,
-        message: "Something went wrong",
-      },
+      { success: false, message: "Something went wrong" },
       { status: 500 },
     );
   }

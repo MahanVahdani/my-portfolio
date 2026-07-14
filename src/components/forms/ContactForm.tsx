@@ -51,11 +51,12 @@ export default function ContactForm() {
       loading: "Sending your message...",
       success: () => {
         trackEvent("contact_form_submit", { status: "success" });
+        reset();
         return "Message sent successfully! I'll reply soon.";
       },
-      error: () => {
+      error: (err: Error) => {
         trackEvent("contact_form_submit", { status: "error" });
-        return "Failed to send message. Please try again.";
+        return err.message;
       },
     });
 
