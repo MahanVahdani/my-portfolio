@@ -1,6 +1,6 @@
 import Image from "next/image";
 import GlassCard from "@components/ui/GlassCard";
-import { TestimonialType } from "@data/testimonials";
+import type { TestimonialType } from "@/types/portfolio";
 
 type TestimonialCardProps = {
   testimonial: TestimonialType;

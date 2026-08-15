@@ -1,6 +1,6 @@
 import Image from "next/image";
 import GlassCard from "@ui/GlassCard";
-import profile from "@data/profile";
+import { portfolioConfig } from "@/config/portfolio.config";
 import ProfileSocialLinks from "@components/sections/profile/ProfileSocialLinks";
 import ProfileHireButton from "@components/sections/profile/ProfileHireButton";
 import CopyButton from "@/components/ui/CopyButton";
@@ -16,8 +16,8 @@ const SidebarProfile = () => {
           rounded-2xl bg-white self-center"
       >
         <Image
-          src={profile.avatar}
-          alt={`${profile.name}'s profile avatar`}
+          src={portfolioConfig.profile.avatar}
+          alt={`${portfolioConfig.profile.name}'s profile avatar`}
           fill
           priority
           className="object-cover"
@@ -29,14 +29,14 @@ const SidebarProfile = () => {
       <div className="flex flex-col justify-between md:flex-row lg:flex-col mt-2 lg:mt-0 lg:gap-4">
         {/* Name + Role */}
         <div className="space-y-1">
-          <h2 className="text-xl font-semibold">{profile.name}</h2>
-          <p className="text-sm text-muted">{profile.role}</p>
+          <h2 className="text-xl font-semibold">{portfolioConfig.profile.name}</h2>
+          <p className="text-sm text-muted">{portfolioConfig.profile.role}</p>
         </div>
 
         {/* Social Media */}
         <div className="flex flex-col items-center mt-3 md:-mt-1 lg:mt-3 lg:gap-1">
-          <ProfileSocialLinks links={profile.socialLinks} />
-          <CopyButton value={profile.email}>{profile.email}</CopyButton>
+          <ProfileSocialLinks links={portfolioConfig.profile.socialLinks} />
+          <CopyButton value={portfolioConfig.profile.email}>{portfolioConfig.profile.email}</CopyButton>
         </div>
       </div>
 

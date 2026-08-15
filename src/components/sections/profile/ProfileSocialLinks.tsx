@@ -1,4 +1,4 @@
-import type { SocialLink } from "@data/profile";
+import type { SocialLink } from "@/types/portfolio";
 
 type ProfileSocialLinksProps = {
   links: SocialLink[];

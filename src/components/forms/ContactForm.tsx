@@ -9,7 +9,7 @@ import {
   contactSchema,
   ContactFormValues,
 } from "@lib/validations/contactSchema";
-import { contactFormFields } from "@data/contact";
+import { portfolioConfig } from "@/config/portfolio.config";
 
 import GlassCard from "@ui/GlassCard";
 import FormField from "@ui/FormField";
@@ -76,7 +76,7 @@ export default function ContactForm() {
         />
 
         <Grid>
-          {contactFormFields.map((field) => (
+          {portfolioConfig.contactFields.map((field) => (
             <GridItem key={field.name} gridSpan={field.gridSpan}>
               <FormField
                 key={field.name}

@@ -2,7 +2,7 @@
 
 import { UseFormRegister } from "react-hook-form";
 import { ContactFormValues } from "@/lib/validations/contactSchema";
-import { ContactField } from "@/data/contact";
+import type { ContactField } from "@/types/portfolio";
 import { cn } from "@/lib/utils";
 
 type FormFieldProps = {

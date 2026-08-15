@@ -1,7 +1,7 @@
 import { BriefcaseBusiness } from "lucide-react";
 import SectionBlock from "@ui/SectionBlock";
 import ExperienceCard from "@/components/sections/experience/ExperienceCard";
-import { experiences } from "@/data/experiences";
+import { portfolioConfig } from "@/config/portfolio.config";
 
 const ExperienceSection = () => {
   return (
@@ -13,7 +13,7 @@ const ExperienceSection = () => {
       description="My journey building high-performance frontend systems and delivering impactful digital products at scale."
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:md:grid-cols-1 xl:md:grid-cols-2 gap-6">
-        {experiences.map((exp) => (
+        {portfolioConfig.experiences.map((exp) => (
           <ExperienceCard
             key={exp.company}
             company={exp.company}

@@ -1,3 +1,4 @@
+import { portfolioConfig } from "@/config/portfolio.config";
 import Shell from "@/components/layout/Shell";
 import CookieBanner from "@/components/layout/CookieBanner";
 import AboutSection from "@/components/sections/about/AboutSection";
@@ -14,12 +15,12 @@ const Home = () => {
     <Shell>
       <CookieBanner />
       <HeroSection />
-      <AboutSection />
-      <ExperienceSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <TestimonialsSection />
-      <ContactSection />
+      {portfolioConfig.sections.about && <AboutSection />}
+      {portfolioConfig.sections.experience && <ExperienceSection />}
+      {portfolioConfig.sections.skills && <SkillsSection />}
+      {portfolioConfig.sections.projects && <ProjectsSection />}
+      {portfolioConfig.sections.testimonials && <TestimonialsSection />}
+      {portfolioConfig.sections.contact && <ContactSection />}
       <PageView />
     </Shell>
   );

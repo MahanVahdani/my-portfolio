@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { X, Menu } from "lucide-react";
-import profile from "@data/profile";
+import { portfolioConfig } from "@/config/portfolio.config";
 import SectionNavigator from "@components/layout/SectionNavigator";
 import GlassCard from "@ui/GlassCard";
 import CopyButton from "@/components/ui/CopyButton";
@@ -70,8 +70,8 @@ const SidebarMobile = () => {
                 <div className="flex items-center">
                   <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full">
                     <Image
-                      src={profile.avatar}
-                      alt={`${profile.name}'s profile avatar`}
+                      src={portfolioConfig.profile.avatar}
+                      alt={`${portfolioConfig.profile.name}'s profile avatar`}
                       fill
                       priority
                       className="object-cover"
@@ -81,9 +81,9 @@ const SidebarMobile = () => {
 
                   <div className="ml-3">
                     <h2 className="text-xl font-semibold leading-tight text-foreground">
-                      {profile.name}
+                      {portfolioConfig.profile.name}
                     </h2>
-                    <p className="text-sm text-muted">{profile.role}</p>
+                    <p className="text-sm text-muted">{portfolioConfig.profile.role}</p>
                   </div>
                 </div>
 
@@ -99,8 +99,8 @@ const SidebarMobile = () => {
               </div>
 
               <div className="mt-5 flex flex-col items-center gap-2 lg:gap-1">
-                <ProfileSocialLinks links={profile.socialLinks} />
-                <CopyButton value={profile.email}>{profile.email}</CopyButton>
+                <ProfileSocialLinks links={portfolioConfig.profile.socialLinks} />
+                <CopyButton value={portfolioConfig.profile.email}>{portfolioConfig.profile.email}</CopyButton>
               </div>
             </div>
 

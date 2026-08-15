@@ -3,7 +3,7 @@
 import SectionBlock from "@ui/SectionBlock";
 import { MessageSquareQuote } from "lucide-react";
 import Carousel from "../../layout/Carousel";
-import { testimonials } from "@/data/testimonials";
+import { portfolioConfig } from "@/config/portfolio.config";
 import TestimonialCard from "./TestimonialCard";
 
 import { Pagination, EffectCoverflow, Autoplay } from "swiper/modules";
@@ -20,7 +20,7 @@ const TestimonialsSection = () => {
       description="Real feedback from clients and colleagues I've had the pleasure to work with."
     >
       <Carousel
-        data={testimonials}
+        data={portfolioConfig.testimonials}
         wrapperClassName="md:mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] lg:mask-none xl:mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
         modules={[EffectCoverflow, Pagination, Autoplay]}
         effect="coverflow"

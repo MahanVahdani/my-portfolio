@@ -1,6 +1,6 @@
 import { Sparkles } from "lucide-react";
 import SectionBlock from "@ui/SectionBlock";
-import { skills } from "@data/skills";
+import { portfolioConfig } from "@/config/portfolio.config";
 import SkillCard from "@components/sections/skill/SkillCard";
 
 const SkillsSection = () => {
@@ -17,7 +17,7 @@ const SkillsSection = () => {
                 gap-5 
                 justify-items-center"
       >
-        {skills.map((skill) => (
+        {portfolioConfig.skills.map((skill) => (
           <SkillCard
             key={skill.id}
             name={skill.name}

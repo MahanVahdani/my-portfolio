@@ -3,7 +3,7 @@ import SectionBlock from "@ui/SectionBlock";
 import Grid from "@ui/Grid";
 import GridItem from "@ui/GridItem";
 import ProjectCard from "@components/sections/projects/ProjectCard";
-import { portfolioProjects } from "@/data/projects";
+import { portfolioConfig } from "@/config/portfolio.config";
 
 const ProjectsSection = () => {
   return (
@@ -15,7 +15,7 @@ const ProjectsSection = () => {
       description="A collection of meaningful projects where I helped turn ideas into scalable, high-performance digital experiences."
     >
       <Grid className="gap-y-8">
-        {portfolioProjects.map((project) => (
+        {portfolioConfig.projects.map((project) => (
           <GridItem key={project.id} gridSpan={project.gridSpan}>
             <ProjectCard
               name={project.name}
