@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
-import GlassCard from "@/components/ui/GlassCard";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import { cn } from "@/lib/utils";
 
 interface ProjectCardProps {
@@ -12,6 +12,8 @@ interface ProjectCardProps {
   link: string;
 }
 
+import { HoverCard } from "@/components/ui/motion";
+
 const ProjectCard = ({
   image,
   logo,
@@ -20,8 +22,8 @@ const ProjectCard = ({
   link,
 }: ProjectCardProps) => {
   return (
-    <div className={cn("flex flex-col group/card h-full")}>
-      <GlassCard className="p-3 rounded-2xl">
+    <HoverCard className="flex flex-col group/card h-full">
+      <SpotlightCard className="p-3 rounded-2xl">
         <div className="relative w-full aspect-4/3 sm:aspect-video rounded-2xl overflow-hidden shadow-lg group border border-surface-border cursor-pointer">
           <Image
             src={image}
@@ -58,7 +60,7 @@ const ProjectCard = ({
             </span>
           </div>
         </div>
-      </GlassCard>
+      </SpotlightCard>
 
       <Link
         href={link}
@@ -74,7 +76,7 @@ const ProjectCard = ({
           <ExternalLink size={18} strokeWidth={2} />
         </span>
       </Link>
-    </div>
+    </HoverCard>
   );
 };
 
