@@ -3,7 +3,9 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import { Send } from "lucide-react";
+import { Send, Loader2, CheckCircle2 } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 import {
   contactSchema,
@@ -18,19 +20,47 @@ import GridItem from "@ui/GridItem";
 import Button from "@ui/Button";
 import { trackEvent } from "@/lib/analytics";
 
+type SubmitState = "idle" | "loading" | "success";
+
+const buttonContent: Record<
+  SubmitState,
+  { icon: React.ReactNode; label: string }
+> = {
+  idle: { icon: <Send className="h-4 w-4" />, label: "Send Message" },
+  loading: {
+    icon: <Loader2 className="h-4 w-4 animate-spin" />,
+    label: "Sending...",
+  },
+  success: {
+    icon: <CheckCircle2 className="h-4 w-4" />,
+    label: "Message Sent!",
+  },
+};
+
 export default function ContactForm() {
+  const [submitState, setSubmitState] = useState<SubmitState>("idle");
+
   const {
     register,
     handleSubmit,
     reset,
     watch,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
     mode: "onBlur",
   });
 
+  // Auto-reset to idle 2.5s after success
+  useEffect(() => {
+    if (submitState !== "success") return;
+    const timer = setTimeout(() => setSubmitState("idle"), 2500);
+    return () => clearTimeout(timer);
+  }, [submitState]);
+
   const onSubmit = async (data: ContactFormValues) => {
+    setSubmitState("loading");
+
     const promise = (async () => {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -60,9 +90,18 @@ export default function ContactForm() {
       },
     });
 
-    await promise;
-    reset();
+    try {
+      await promise;
+      setSubmitState("success");
+      reset();
+    } catch {
+      // Toast already handles the error display
+      setSubmitState("idle");
+    }
   };
+
+  const isDisabled = submitState !== "idle";
+  const current = buttonContent[submitState];
 
   return (
     <GlassCard className="p-6 rounded-2xl">
@@ -92,12 +131,23 @@ export default function ContactForm() {
         <div className="pt-8">
           <Button
             type="submit"
-            variant="primary"
-            disabled={isSubmitting}
-            className="w-full md:w-auto"
+            variant={submitState === "success" ? "outlined" : "primary"}
+            disabled={isDisabled}
+            className="w-full md:w-auto relative overflow-hidden"
           >
-            <Send className="h-4 w-4" />
-            {isSubmitting ? "Sending..." : "Send Message"}
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={submitState}
+                className="inline-flex items-center gap-2"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {current.icon}
+                {current.label}
+              </motion.span>
+            </AnimatePresence>
           </Button>
         </div>
       </form>
