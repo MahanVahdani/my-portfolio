@@ -3,6 +3,9 @@ import type { PortfolioConfig } from "@/types/portfolio";
 import { PortfolioConfigSchema } from "@/types/portfolio";
 
 /**
+ * ⚠️ DO NOT add "use client" or import React hooks in this file.
+ * It is consumed by Server Components for metadata generation.
+ *
  * Master Portfolio Configuration
  * 
  * This file serves as the central configuration for the entire portfolio.
@@ -11,7 +14,7 @@ import { PortfolioConfigSchema } from "@/types/portfolio";
  */
 export const portfolioConfig: PortfolioConfig = PortfolioConfigSchema.parse({
   seo: {
-    metadataBase: new URL("https://yourwebsite.com"),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://yourwebsite.com"),
     title: "Mahan Vahdani | Frontend Developer",
     description: "Frontend Developer specializing in React and Next.js.",
     keywords: ["Frontend Developer", "React", "Next.js", "Mahan Vahdani", "Portfolio"],
@@ -36,6 +39,13 @@ export const portfolioConfig: PortfolioConfig = PortfolioConfigSchema.parse({
       title: "Mahan Vahdani | Frontend Developer",
       description: "Frontend Developer specializing in React and Next.js.",
       images: ["/images/profile.png"],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    alternates: {
+      canonical: process.env.NEXT_PUBLIC_SITE_URL || "https://yourwebsite.com",
     },
   },
   /**
@@ -92,7 +102,7 @@ export const portfolioConfig: PortfolioConfig = PortfolioConfigSchema.parse({
    */
   projects: [
     {
-      id: 1,
+      id: "1",
       name: "Aqaye Pardakht",
       logo: "/images/companies/aqa.jpeg",
       image: "/images/projects/AqayePardakht_Status.png",
@@ -102,7 +112,7 @@ export const portfolioConfig: PortfolioConfig = PortfolioConfigSchema.parse({
       gridSpan: { md: 6, lg: 12, xl: 6 },
     },
     {
-      id: 2,
+      id: "2",
       name: "Aqaye Pardakht",
       logo: "/images/companies/aqa.jpeg",
       image: "/images/projects/AqayePardakht_Panel.png",
@@ -112,7 +122,7 @@ export const portfolioConfig: PortfolioConfig = PortfolioConfigSchema.parse({
       gridSpan: { md: 6, lg: 12, xl: 6 },
     },
     {
-      id: 3,
+      id: "3",
       name: "Rivas System",
       logo: "/images/companies/rivas.jpeg",
       image: "/images/projects/Rivas_Panel.png",
@@ -122,7 +132,7 @@ export const portfolioConfig: PortfolioConfig = PortfolioConfigSchema.parse({
       gridSpan: { md: 6, lg: 12, xl: 6 },
     },
     {
-      id: 4,
+      id: "4",
       name: "Dariche-zehn Web Agency",
       logo: "/images/companies/dariche.jpeg",
       image: "/images/projects/Way2Connect.png",

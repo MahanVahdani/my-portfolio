@@ -12,7 +12,13 @@ const inter = Inter({
   display: "swap",
 });
 
-export const metadata: Metadata = portfolioConfig.seo;
+export const metadata: Metadata = {
+  ...portfolioConfig.seo,
+  title: {
+    default: portfolioConfig.seo.title as string,
+    template: `%s | ${portfolioConfig.profile.name}`,
+  },
+};
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -23,49 +29,37 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable} suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                const t = localStorage.getItem("theme");
-                if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-                  document.documentElement.classList.add("dark");
-                }
-              } catch(e) {}
-            `,
-          }}
-        />
-      </head>
-
       <body>
         {/* Google Analytics script */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-          strategy="afterInteractive"
-        />
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga-consent" strategy="afterInteractive">
+              {`
+        window.dataLayer = window.dataLayer || [];
 
-        <Script id="ga-consent" strategy="afterInteractive">
-          {`
-    window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
 
-    function gtag(){dataLayer.push(arguments);}
-    window.gtag = gtag;
+        gtag('js', new Date());
 
-    gtag('js', new Date());
+        gtag('consent', 'default', {
+          analytics_storage: 'denied',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied'
+        });
 
-    gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied'
-    });
-
-    gtag('config', '${GA_ID}', {
-      send_page_view: false
-    });
-  `}
-        </Script>
+        gtag('config', '${GA_ID}', {
+          send_page_view: false
+        });
+      `}
+            </Script>
+          </>
+        )}
 
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
