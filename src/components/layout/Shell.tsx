@@ -10,8 +10,8 @@ const Shell = ({ children }: { children: ReactNode }) => {
     <>
       <AnimatedBackground />
 
-      <div className="flex min-h-screen w-full justify-center px-4">
-        <div className="grid w-full grid-cols-1 gap-8 py-10 lg:grid-cols-[280px_minmax(0,1fr)_80px] lg:py-20">
+      <div className="flex min-h-screen w-full justify-center px-4 sm:px-6 lg:px-8">
+        <div className="grid w-full max-w-[1400px] grid-cols-1 gap-8 py-10 lg:grid-cols-[280px_minmax(0,1fr)_80px] lg:py-20">
           <div className="block lg:hidden">
             <SidebarProfile />
           </div>
