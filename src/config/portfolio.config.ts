@@ -10,6 +10,7 @@ import type { PortfolioConfig } from "@/types/portfolio";
  */
 export const portfolioConfig: PortfolioConfig = {
   seo: {
+    metadataBase: new URL("https://yourwebsite.com"),
     title: "Mahan Vahdani | Frontend Developer",
     description: "Frontend Developer specializing in React and Next.js.",
     keywords: ["Frontend Developer", "React", "Next.js", "Mahan Vahdani", "Portfolio"],

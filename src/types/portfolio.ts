@@ -64,6 +64,7 @@ export type ContactField = {
 
 export interface PortfolioConfig {
   seo: {
+    metadataBase: URL;
     title: string;
     description: string;
     keywords: string[];
