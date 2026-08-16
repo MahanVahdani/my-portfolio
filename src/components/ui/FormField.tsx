@@ -22,10 +22,11 @@ export default function FormField({
   const characterCount = value?.length ?? 0;
 
   const inputClasses = cn(
-    "w-full rounded-xl border bg-transparent px-4 py-3 outline-none transition-all",
-    "border-surface-border focus:border-primary focus:ring-1 focus:ring-primary/30",
+    "w-full rounded-xl border bg-transparent px-4 py-3 outline-none transition-all duration-300",
+    "border-surface-border focus:border-primary focus:ring-2 focus:ring-primary/40",
+    "focus:shadow-[0_0_20px_rgba(20,184,166,0.15)]",
     "placeholder:text-muted-foreground",
-    error && "border-red-500 focus:border-red-500",
+    error && "border-red-500 focus:border-red-500 focus:shadow-[0_0_20px_rgba(239,68,68,0.15)]",
     isTextarea && "resize-y min-h-[140px]",
   );
 

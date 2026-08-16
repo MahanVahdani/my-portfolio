@@ -2,6 +2,7 @@ import React from "react";
 import { LucideIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { MotionSection } from "@/components/ui/motion";
 
 type SectionBlockProps = {
   id?: string;
@@ -23,27 +24,29 @@ const SectionBlock = ({
   children,
 }: SectionBlockProps) => {
   return (
-    <section id={id} className={cn("scroll-mt-24 py-10 space-y-8", className)}>
-      {/* Header */}
-      <div className="space-y-3">
-        <div className="flex items-start gap-3">
-          {Icon && <Icon className="h-6 w-6 shrink-0 mt-1.5 text-primary" />}
+    <section id={id} className={cn("scroll-mt-24 py-10", className)}>
+      <MotionSection className="space-y-8">
+        {/* Header */}
+        <div className="space-y-3">
+          <div className="flex items-start gap-3">
+            {Icon && <Icon className="h-6 w-6 shrink-0 mt-1.5 text-primary" />}
 
-          <h2 className="text-3xl tracking-tight font-semibold">
-            <span className="text-heading-muted">{mutedTitle} </span>
+            <h2 className="text-3xl tracking-tight font-semibold">
+              <span className="text-heading-muted">{mutedTitle} </span>
 
-            <span className="text-primary font-bold">{accentTitle}</span>
-          </h2>
+              <span className="text-primary font-bold">{accentTitle}</span>
+            </h2>
+          </div>
+
+          {description && (
+            <p className="text-sm leading-relaxed text-foreground/80">
+              {description}
+            </p>
+          )}
         </div>
 
-        {description && (
-          <p className="text-sm leading-relaxed text-foreground/80">
-            {description}
-          </p>
-        )}
-      </div>
-
-      {children}
+        {children}
+      </MotionSection>
     </section>
   );
 };
