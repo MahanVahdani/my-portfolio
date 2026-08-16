@@ -9,6 +9,33 @@ import type { PortfolioConfig } from "@/types/portfolio";
  * update the image paths, and toggle sections on/off from here.
  */
 export const portfolioConfig: PortfolioConfig = {
+  seo: {
+    title: "Mahan Vahdani | Frontend Developer",
+    description: "Frontend Developer specializing in React and Next.js.",
+    keywords: ["Frontend Developer", "React", "Next.js", "Mahan Vahdani", "Portfolio"],
+    openGraph: {
+      title: "Mahan Vahdani | Frontend Developer",
+      description: "Frontend Developer specializing in React and Next.js.",
+      url: "https://yourwebsite.com",
+      siteName: "Mahan Vahdani Portfolio",
+      images: [
+        {
+          url: "/images/profile.png",
+          width: 800,
+          height: 600,
+          alt: "Mahan Vahdani",
+        },
+      ],
+      locale: "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Mahan Vahdani | Frontend Developer",
+      description: "Frontend Developer specializing in React and Next.js.",
+      images: ["/images/profile.png"],
+    },
+  },
   /**
    * Section Visibility Toggles
    * Set a section to `false` to hide it completely from the portfolio.
@@ -31,7 +58,7 @@ export const portfolioConfig: PortfolioConfig = {
     avatar: "/images/profile.png",
     name: "Mahan Vahdani",
     role: "Frontend Developer",
-    email: "dev.vahdani@gmail.com",
+    email: "your.email@example.com",
     socialLinks: [
       {
         href: "https://github.com/MahanVahdani",
@@ -44,7 +71,7 @@ export const portfolioConfig: PortfolioConfig = {
         label: "LinkedIn",
       },
       {
-        href: "mailto:dev.vahdani@gmail.com",
+        href: "mailto:your.email@example.com",
         icon: FaEnvelope,
         label: "Email",
       },

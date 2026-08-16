@@ -4,18 +4,27 @@ import { contactSchema } from "@/lib/validations/contactSchema";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 
-// Initialize Redis and the Rate Limiter outside the request handler
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL!,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-});
+import { portfolioConfig } from "@/config/portfolio.config";
 
-const ratelimit = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(2, "1 h"),
-  analytics: true,
-  prefix: "@upstash/ratelimit",
-});
+// Initialize Redis and the Rate Limiter conditionally
+let ratelimit: Ratelimit | null = null;
+
+if (
+  process.env.UPSTASH_REDIS_REST_URL &&
+  process.env.UPSTASH_REDIS_REST_TOKEN
+) {
+  const redis = new Redis({
+    url: process.env.UPSTASH_REDIS_REST_URL,
+    token: process.env.UPSTASH_REDIS_REST_TOKEN,
+  });
+
+  ratelimit = new Ratelimit({
+    redis,
+    limiter: Ratelimit.slidingWindow(2, "1 h"),
+    analytics: true,
+    prefix: "@upstash/ratelimit",
+  });
+}
 
 export async function POST(request: Request) {
   try {
@@ -27,25 +36,27 @@ export async function POST(request: Request) {
       request.headers.get("x-vercel-ip-country") ?? "Unknown Country";
     const location = `${city}, ${country}`;
 
-    const { success, limit, reset, remaining } = await ratelimit.limit(
-      `contact_form_${ip}`,
-    );
-
-    if (!success) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Too many requests. Please try again later.",
-        },
-        {
-          status: 429,
-          headers: {
-            "X-RateLimit-Limit": limit.toString(),
-            "X-RateLimit-Remaining": remaining.toString(),
-            "X-RateLimit-Reset": reset.toString(),
-          },
-        },
+    if (ratelimit) {
+      const { success, limit, reset, remaining } = await ratelimit.limit(
+        `contact_form_${ip}`,
       );
+
+      if (!success) {
+        return NextResponse.json(
+          {
+            success: false,
+            message: "Too many requests. Please try again later.",
+          },
+          {
+            status: 429,
+            headers: {
+              "X-RateLimit-Limit": limit.toString(),
+              "X-RateLimit-Remaining": remaining.toString(),
+              "X-RateLimit-Reset": reset.toString(),
+            },
+          },
+        );
+      }
     }
 
     const body = await request.json();
@@ -69,9 +80,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: true }, { status: 200 });
     }
 
+    const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+    const toEmail = process.env.CONTACT_RECEIVER_EMAIL || "dev.vahdani@gmail.com";
+
     const { data, error } = await resend.emails.send({
-      from: "Mahan Portfolio <onboarding@resend.dev>",
-      to: "dev.vahdani@gmail.com",
+      from: `${portfolioConfig.profile.name} <${fromEmail}>`,
+      to: toEmail,
       subject: `[Portfolio] ${subject}`,
       replyTo: email,
       html: `

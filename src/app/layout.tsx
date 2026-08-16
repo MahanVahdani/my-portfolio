@@ -2,12 +2,10 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/lib/theme/ThemeProvider";
+import { portfolioConfig } from "@/config/portfolio.config";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "Mahan Vahdani | Frontend Developer",
-  description: "Frontend Developer specializing in React and Next.js.",
-};
+export const metadata: Metadata = portfolioConfig.seo;
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
