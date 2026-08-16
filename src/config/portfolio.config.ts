@@ -1,5 +1,6 @@
 import { FaGithub, FaLinkedin, FaEnvelope, FaInstagram } from "react-icons/fa6";
 import type { PortfolioConfig } from "@/types/portfolio";
+import { PortfolioConfigSchema } from "@/types/portfolio";
 
 /**
  * Master Portfolio Configuration
@@ -8,7 +9,7 @@ import type { PortfolioConfig } from "@/types/portfolio";
  * As a junior developer customizing this template, you can modify the text,
  * update the image paths, and toggle sections on/off from here.
  */
-export const portfolioConfig: PortfolioConfig = {
+export const portfolioConfig: PortfolioConfig = PortfolioConfigSchema.parse({
   seo: {
     metadataBase: new URL("https://yourwebsite.com"),
     title: "Mahan Vahdani | Frontend Developer",
@@ -21,7 +22,7 @@ export const portfolioConfig: PortfolioConfig = {
       siteName: "Mahan Vahdani Portfolio",
       images: [
         {
-          url: "/images/profile.png",
+          url: new URL("/images/profile.png", "https://yourwebsite.com").href,
           width: 800,
           height: 600,
           alt: "Mahan Vahdani",
@@ -338,4 +339,4 @@ export const portfolioConfig: PortfolioConfig = {
       placeholder: "Tell me about your project, goals, or idea...",
     },
   ],
-};
+});

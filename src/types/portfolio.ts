@@ -1,106 +1,96 @@
-import type { IconType } from "react-icons";
 import type { ContactFormValues } from "@/lib/validations/contactSchema";
 import type { GridSpan } from "@/lib/gridStyle";
+import type { Metadata } from "next";
+import { z } from "zod";
 
-export type SocialLink = {
-  href: string;
-  icon: IconType;
-  label: string;
-};
+const GridSpanSchema = z.custom<GridSpan>();
 
-export type Profile = {
-  avatar: string;
-  name: string;
-  role: string;
-  email: string;
-  socialLinks: SocialLink[];
-};
+// Using z.custom to allow any valid React component for icons
+const IconSchema = z.custom<React.ComponentType<React.SVGAttributes<SVGElement>>>();
 
-export interface Project {
-  id: number;
-  name: string;
-  logo: string;
-  image: string;
-  description: string;
-  link: string;
-  gridSpan?: GridSpan;
-}
+export const SocialLinkSchema = z.object({
+  href: z.string().url(),
+  icon: IconSchema,
+  label: z.string(),
+});
+export type SocialLink = z.infer<typeof SocialLinkSchema>;
 
-export type Skill = {
-  id: string;
-  name: string;
-  percentage: number;
-  logo: string;
-};
+export const ProfileSchema = z.object({
+  avatar: z.string(),
+  name: z.string(),
+  role: z.string(),
+  email: z.string().email(),
+  socialLinks: z.array(SocialLinkSchema),
+});
+export type Profile = z.infer<typeof ProfileSchema>;
 
-export type Experience = {
-  id: string;
-  company: string;
-  role: string;
-  period: string;
-  logo: string;
-  companyType: string;
-  achievements: string[];
-};
+export const ProjectSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  logo: z.string(),
+  image: z.string(),
+  description: z.string(),
+  link: z.string().url(),
+  gridSpan: GridSpanSchema.optional(),
+});
+export type Project = z.infer<typeof ProjectSchema>;
 
-export interface TestimonialType {
-  name: string;
-  image: string;
-  role: string;
-  company: string;
-  comment: string;
-}
+export const SkillSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  percentage: z.number().min(0).max(100),
+  logo: z.string(),
+});
+export type Skill = z.infer<typeof SkillSchema>;
 
-export type ContactField = {
-  name: keyof ContactFormValues;
-  label: string;
-  type?: "text" | "email" | "textarea";
-  placeholder: string;
-  rows?: number;
-  maxLength?: number;
-  showCharacterCount?: boolean;
-  gridSpan?: GridSpan;
-};
+export const ExperienceSchema = z.object({
+  id: z.string(),
+  company: z.string(),
+  role: z.string(),
+  period: z.string(),
+  logo: z.string(),
+  companyType: z.string(),
+  achievements: z.array(z.string()),
+});
+export type Experience = z.infer<typeof ExperienceSchema>;
 
-export interface PortfolioConfig {
-  seo: {
-    metadataBase: URL;
-    title: string;
-    description: string;
-    keywords: string[];
-    openGraph: {
-      title: string;
-      description: string;
-      url: string;
-      siteName: string;
-      images: Array<{
-        url: string;
-        width: number;
-        height: number;
-        alt: string;
-      }>;
-      locale: string;
-      type: string;
-    };
-    twitter: {
-      card: string;
-      title: string;
-      description: string;
-      images: string[];
-    };
-  };
-  sections: {
-    about: boolean;
-    experience: boolean;
-    projects: boolean;
-    skills: boolean;
-    testimonials: boolean;
-    contact: boolean;
-  };
-  profile: Profile;
-  projects: Project[];
-  skills: Skill[];
-  experiences: Experience[];
-  testimonials: TestimonialType[];
-  contactFields: ContactField[];
-}
+export const TestimonialTypeSchema = z.object({
+  name: z.string(),
+  image: z.string(),
+  role: z.string(),
+  company: z.string(),
+  comment: z.string(),
+});
+export type TestimonialType = z.infer<typeof TestimonialTypeSchema>;
+
+export const ContactFieldSchema = z.object({
+  name: z.custom<keyof ContactFormValues>(),
+  label: z.string(),
+  type: z.enum(["text", "email", "textarea"]).default("text"),
+  placeholder: z.string(),
+  rows: z.number().optional(),
+  maxLength: z.number().optional(),
+  showCharacterCount: z.boolean().optional(),
+  gridSpan: GridSpanSchema.optional(),
+});
+export type ContactField = z.infer<typeof ContactFieldSchema>;
+
+export const PortfolioConfigSchema = z.object({
+  seo: z.custom<Metadata>(),
+  sections: z.object({
+    about: z.boolean(),
+    experience: z.boolean(),
+    projects: z.boolean(),
+    skills: z.boolean(),
+    testimonials: z.boolean(),
+    contact: z.boolean(),
+  }),
+  profile: ProfileSchema,
+  projects: z.array(ProjectSchema),
+  skills: z.array(SkillSchema),
+  experiences: z.array(ExperienceSchema),
+  testimonials: z.array(TestimonialTypeSchema),
+  contactFields: z.array(ContactFieldSchema),
+});
+
+export type PortfolioConfig = z.infer<typeof PortfolioConfigSchema>;

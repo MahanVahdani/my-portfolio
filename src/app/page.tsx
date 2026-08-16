@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import { portfolioConfig } from "@/config/portfolio.config";
 import Shell from "@/components/layout/Shell";
+
+export const metadata: Metadata = {
+  title: portfolioConfig.seo.title, // Explicitly override root metadata if needed
+};
 import CookieBanner from "@/components/layout/CookieBanner";
 import AboutSection from "@/components/sections/about/AboutSection";
 import ContactSection from "@/components/sections/contact/ContactSection";

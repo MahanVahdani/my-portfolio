@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Toaster } from "sonner";
+import { Inter } from "next/font/google";
+import { CustomToaster } from "@/components/layout/CustomToaster";
 import { ThemeProvider } from "@/lib/theme/ThemeProvider";
 import { portfolioConfig } from "@/config/portfolio.config";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = portfolioConfig.seo;
 
@@ -15,8 +22,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head />
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const t = localStorage.getItem("theme");
+                if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+                  document.documentElement.classList.add("dark");
+                }
+              } catch(e) {}
+            `,
+          }}
+        />
+      </head>
 
       <body>
         {/* Google Analytics script */}
@@ -56,21 +76,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-const CustomToaster = () => {
-  return (
-    <Toaster
-      position="bottom-right"
-      theme="system"
-      richColors
-      toastOptions={{
-        className: "glass-card border-surface-border",
-        style: {
-          background: "var(--surface)",
-          color: "var(--foreground)",
-          backdropFilter: "blur(11px)",
-        },
-      }}
-    />
-  );
-};
