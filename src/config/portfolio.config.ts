@@ -299,7 +299,7 @@ export const portfolioConfig: PortfolioConfig = {
       role: "Frontend Engineer",
       company: "Seko Coworking",
       comment:
-        "I had the pleasure of meeting Mahan through the Seko coworking community, and I’ve been consistently impressed by his professionalism, dedication, and drive.\n\nHe’s a highly motivated person who creates opportunities for others to learn and grow. He organized several AI-focused gatherings, bringing talented people together to collaborate and build exciting projects.\n\nI owe a good part of my knowledge in AI and MCP servers to him. Beyond his technical skills, he stands out for his responsibility, curiosity, and commitment to continuous improvement. I confidently recommend him to any team.",
+        "I had the pleasure of meeting Mahan through the Sakoo coworking community, and I’ve been consistently impressed by his professionalism, dedication, and drive.\n\nHe’s a highly motivated person who creates opportunities for others to learn and grow. He organized several AI-focused gatherings, bringing talented people together to collaborate and build exciting projects.\n\nI owe a good part of my knowledge in AI and MCP servers to him. Beyond his technical skills, he stands out for his responsibility, curiosity, and commitment to continuous improvement. I confidently recommend him to any team.",
     },
   ],
 
