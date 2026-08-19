@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
@@ -14,7 +14,7 @@ export const MotionSection = ({
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <motion.div
+    <m.div
       className={className}
       initial={
         shouldReduceMotion
@@ -26,7 +26,7 @@ export const MotionSection = ({
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 };
 
@@ -42,7 +42,7 @@ export const MotionStagger = ({
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <motion.div
+    <m.div
       className={className}
       initial={shouldReduceMotion ? "visible" : "hidden"}
       whileInView="visible"
@@ -57,7 +57,7 @@ export const MotionStagger = ({
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 };
 
@@ -73,7 +73,7 @@ export const MotionItem = ({
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <motion.div
+    <m.div
       className={className}
       style={style}
       variants={{
@@ -89,7 +89,7 @@ export const MotionItem = ({
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 };
 
@@ -103,15 +103,12 @@ export const HoverCard = ({
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <motion.div
-      className={cn(
-        "transition-all duration-300 hover:shadow-xl hover:border-white/20 dark:hover:border-white/10 group",
-        className
-      )}
+    <m.div
+      className={cn("transition-all duration-100 group", className)}
       whileHover={shouldReduceMotion ? {} : { y: -4 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
+      transition={{ duration: 0.1, ease: "easeOut" }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 };

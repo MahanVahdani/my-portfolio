@@ -4,6 +4,7 @@ import SectionNavigator from "@/components/layout/SectionNavigator";
 import SidebarProfile from "@/components/layout/SidebarProfile";
 import SidebarMobile from "@/components/layout/SidebarMobile";
 import GlassCard from "@/components/ui/GlassCard";
+import MotionProvider from "@/components/layout/MotionProvider";
 
 const Shell = ({ children }: { children: ReactNode }) => {
   return (
@@ -22,7 +23,9 @@ const Shell = ({ children }: { children: ReactNode }) => {
             </div>
           </aside>
 
-          <main className="w-full min-w-0">{children}</main>
+          <main className="w-full min-w-0">
+            <MotionProvider>{children}</MotionProvider>
+          </main>
 
           <aside className="hidden lg:block">
             <div className="sticky top-1/2 flex h-122 -translate-y-1/2 justify-center">
