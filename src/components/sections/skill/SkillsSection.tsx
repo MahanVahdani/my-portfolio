@@ -35,7 +35,7 @@ const SkillsSection = () => {
       description="Core technologies and tools I work with daily to build high-performance, scalable web applications."
     >
       <div ref={containerRef} className="w-full overflow-hidden mt-8 py-8 -my-8 mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-        <m.div style={{ x: x1 }} className="flex gap-6 bg-transparent w-max">
+        <m.div style={{ x: x1 }} className="grid grid-rows-2 md:flex md:flex-row grid-flow-col gap-6 w-max">
           {topRowInfinite.map((skill, index) => (
             <SkillCard
               key={`${skill.id}-${index}`}
@@ -46,7 +46,7 @@ const SkillsSection = () => {
           ))}
         </m.div>
 
-        <m.div style={{ x: x2 }} className="flex bg-transparent gap-6 w-max mt-6">
+        <m.div style={{ x: x2 }} className="grid grid-rows-2 md:flex md:flex-row grid-flow-col gap-6 w-max mt-6">
           {bottomRowInfinite.map((skill, index) => (
             <SkillCard
               key={`${skill.id}-${index}`}
