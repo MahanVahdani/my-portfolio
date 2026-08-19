@@ -1,4 +1,4 @@
-# ✦ Mahan Vahdani — Developer Portfolio
+# ✦ Mahan Vahdani Sanavi - Developer Portfolio
 
 A production-ready, fully animated Next.js developer portfolio template. Designed to be forked and personalised entirely through a single configuration file — no UI code changes needed.
 
