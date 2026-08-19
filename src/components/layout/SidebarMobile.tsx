@@ -58,13 +58,9 @@ const SidebarMobile = () => {
       >
         <div className="flex min-h-full flex-col justify-between">
           <div className="flex flex-col">
-            {/* TOP SECTION: Deeper, sharper elliptical bottom curve */}
+            {/* TOP SECTION: Flat glassmorphic header with subtle bottom divider */}
             <div
-              className="flex flex-col bg-foreground/5 border-b border-surface-border pt-4 px-4 pb-8"
-              style={{
-                borderBottomLeftRadius: "50% 24px",
-                borderBottomRightRadius: "50% 24px",
-              }}
+              className="flex flex-col bg-foreground/5 border-b border-black/10 dark:border-white/10 rounded-none pt-4 px-4 pb-6"
             >
               <div className="flex items-start justify-between">
                 <div className="flex items-center">
