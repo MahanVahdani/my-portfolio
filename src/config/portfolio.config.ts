@@ -3,14 +3,13 @@ import type { PortfolioConfig } from "@/types/portfolio";
 import { PortfolioConfigSchema } from "@/types/portfolio";
 
 /**
- * ⚠️ DO NOT add "use client" or import React hooks in this file.
- * It is consumed by Server Components for metadata generation.
- *
  * Master Portfolio Configuration
- * 
- * This file serves as the central configuration for the entire portfolio.
- * As a junior developer customizing this template, you can modify the text,
- * update the image paths, and toggle sections on/off from here.
+ *
+ * ⚠️  Do NOT add "use client" or import React hooks here.
+ *     This file is consumed by Server Components for metadata generation.
+ *
+ * All personalisation lives here — update your profile, projects, skills,
+ * experiences, and testimonials without touching any UI code.
  */
 export const portfolioConfig: PortfolioConfig = PortfolioConfigSchema.parse({
   seo: {
@@ -70,7 +69,7 @@ export const portfolioConfig: PortfolioConfig = PortfolioConfigSchema.parse({
     avatar: "/images/profile.png",
     name: "Mahan Vahdani",
     role: "Frontend Developer",
-    email: "your.email@example.com",
+    email: "dev.vahdani@gmail.com",
     socialLinks: [
       {
         href: "https://github.com/MahanVahdani",
@@ -83,7 +82,7 @@ export const portfolioConfig: PortfolioConfig = PortfolioConfigSchema.parse({
         label: "LinkedIn",
       },
       {
-        href: "mailto:your.email@example.com",
+        href: "mailto:dev.vahdani@gmail.com",
         icon: FaEnvelope,
         label: "Email",
       },
@@ -261,7 +260,7 @@ export const portfolioConfig: PortfolioConfig = PortfolioConfigSchema.parse({
 
   /**
    * Testimonials
-   * Add recommendations from colleagues or clients.
+   * Add recommendations.
    */
   testimonials: [
     {
@@ -270,7 +269,7 @@ export const portfolioConfig: PortfolioConfig = PortfolioConfigSchema.parse({
       role: "Senior Frontend Developer",
       company: "mvneco GmbH",
       comment:
-        "I had the pleasure of working with Mahan at Dariche-zehn Web Agency. He stood out with his professionalism, sharp problem-solving skills, and incredible attention to detail. He has a real talent for turning complex ideas into clean, practical frontend solutions.\n\nMahan is a genuinely supportive and reliable teammate who communicates clearly and is always ready to help others. His positive attitude and calm approach make working together smooth and enjoyable.\n\nI highly recommend him as a skilled and dependable frontend developer.",
+        "I had the pleasure of working with Mahan at Dariche-zehn Web Agency. He stood out with his professionalism, sharp problem-solving skills, and incredible attention to detail. He has a real talent for turning complex ideas into clean, practical frontend solutions.\n\nMahan is a supportive and reliable teammate who communicates clearly and is always ready to help others. His positive attitude and calm approach make working together smooth and enjoyable.\n\nI highly recommend him as a skilled and dependable frontend developer.",
     },
     {
       name: "Tahereh Hassanzadeh, Ph.D.",
@@ -278,7 +277,7 @@ export const portfolioConfig: PortfolioConfig = PortfolioConfigSchema.parse({
       role: "Senior Research Associate",
       company: "UNSW",
       comment:
-        "Mahan was one of the strongest students in my classes at Islamic Azad University. He demonstrated excellent programming skills, strong problem-solving abilities, and real creativity in his software development projects.\n\nHe was always supportive of his classmates and willing to help others understand difficult concepts. His responsibility, teamwork, and positive attitude made him stand out from the rest.\n\nI’m confident in his technical abilities and dedication, and I highly recommend him.",
+        "Mahan was one of the strongest students in my classes at Islamic Azad University. He demonstrated excellent programming skills, strong problem-solving abilities, and real creativity in his software development projects.\n\nHe was always supportive of his classmates and willing to help others understand difficult concepts. His responsibility, teamwork, and positive attitude made him stand out.\n\nI’m confident in his technical abilities and dedication, and I highly recommend him.",
     },
     {
       name: "Soheil Farzaneh",
@@ -286,7 +285,7 @@ export const portfolioConfig: PortfolioConfig = PortfolioConfigSchema.parse({
       role: "Senior Backend Developer",
       company: "AqayePardakht",
       comment:
-        "I had the chance to work with Mahan and can confidently say he’s a very strong React.js developer. He has a great eye for UI/UX and always builds clean, reusable code with smart architecture.\n\nBeyond his coding skills, Mahan excels at teamwork and project management. He’s highly disciplined and responsible — someone you can always count on to deliver quality work on time.\n\nI highly recommend him to any team looking for a reliable frontend developer.",
+        "I had the chance to work with Mahan and can confidently say he’s a very strong React.js developer. He has a great eye for UI/UX and always builds clean, reusable code with smart architecture.\n\nBeyond his coding skills, Mahan excels at teamwork and project management. He’s highly disciplined and responsible, someone you can always count on to deliver quality work on time.\n\nI highly recommend him to any team looking for a reliable frontend developer.",
     },
     {
       name: "Sahar Mokarrami",
@@ -294,7 +293,7 @@ export const portfolioConfig: PortfolioConfig = PortfolioConfigSchema.parse({
       role: "Backend Developer",
       company: "Bonyadiha",
       comment:
-        "Mahan is a highly skilled frontend developer. He writes clean, well-structured code and keeps working on challenges until he finds the best solution.\n\nHe’s a great team player who actively helps others, shares his knowledge, and offers guidance whenever needed. His positive energy and reliability make the workplace much more enjoyable.\n\nHe’s truly committed to delivering high-quality work. I highly recommend him to any team looking for a talented and dependable developer.",
+        "Mahan is a highly skilled frontend developer. He writes clean, well-structured code and keeps working on challenges until he finds the best solution.\n\nHe’s a great team player who actively helps others, shares his knowledge, and offers guidance whenever needed. His positive energy and reliability make the workplace more enjoyable.\n\nHe’s truly committed to delivering high-quality work. I highly recommend him to any team looking for a talented and dependable developer.",
     },
     {
       name: "Masoomeh Mokhtari",
@@ -302,7 +301,7 @@ export const portfolioConfig: PortfolioConfig = PortfolioConfigSchema.parse({
       role: "Software Engineer",
       company: "Freelancer",
       comment:
-        "Mahan is one of the best frontend engineers I’ve ever worked with. He’s patient, collaborative, and extremely reliable — always making sure the team keeps moving forward while delivering polished, cutting-edge products.\n\nHis adaptability and strong problem-solving skills help prevent issues before they happen. As a mentor, he’s very generous with his knowledge and focuses on building clean, efficient, and maintainable solutions.\n\nI strongly recommend him as an experienced and outstanding engineer.",
+        "Mahan is one of the best frontend engineers I’ve ever worked with. He’s patient, collaborative, and extremely reliable, always making sure the team keeps moving forward while delivering polished, cutting-edge products.\n\nHis adaptability and strong problem-solving skills help prevent issues before they happen. As a mentor, he’s generous with his knowledge and focuses on building clean, efficient, and maintainable solutions.\n\nI strongly recommend him as an experienced and outstanding engineer.",
     },
     {
       name: "Arian Nargesi",
@@ -310,7 +309,7 @@ export const portfolioConfig: PortfolioConfig = PortfolioConfigSchema.parse({
       role: "Frontend Engineer",
       company: "Seko Coworking",
       comment:
-        "I had the pleasure of meeting Mahan through the Sakoo coworking community, and I’ve been consistently impressed by his professionalism, dedication, and drive.\n\nHe’s a highly motivated person who creates opportunities for others to learn and grow. He organized several AI-focused gatherings, bringing talented people together to collaborate and build exciting projects.\n\nI owe a good part of my knowledge in AI and MCP servers to him. Beyond his technical skills, he stands out for his responsibility, curiosity, and commitment to continuous improvement. I confidently recommend him to any team.",
+        "I had the pleasure of meeting Mahan through the Sakoo coworking community, and I’ve been consistently impressed by his professionalism, dedication, and drive.\n\nHe’s a highly motivated person who creates opportunities for others to learn and grow. He organized several AI-focused gatherings, bringing talented people together to collaborate and build exciting projects.\n\nBeyond his technical skills, he stands out for his responsibility, curiosity, and commitment to continuous improvement. I confidently recommend him to any team.",
     },
   ],
 
