@@ -3,7 +3,7 @@
 import Image from "next/image";
 import GlassCard from "@/components/ui/GlassCard";
 import { cn } from "@/lib/utils";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 
 import { HoverCard } from "@/components/ui/motion";
 
@@ -23,13 +23,13 @@ const SkillCard = ({ name, percentage, logo, className }: SkillCardProps) => {
         className={cn(
           `
         rounded-2xl
-        max-w-45
+        min-w-44 min-h-44
         flex flex-col items-center justify-center
-        gap-4 p-5
+        gap-4 p-6
         text-center
+        shadow-none border-black/5 dark:border-white/10
+        hover:shadow-xl hover:-translate-y-1
         transition-all duration-300
-        hover:-translate-y-1
-        hover:shadow-lg
       `,
           className,
         )}
@@ -61,11 +61,10 @@ const SkillCard = ({ name, percentage, logo, className }: SkillCardProps) => {
 
           {/* Animated Progress Bar */}
           <div className="w-full h-1 rounded-full bg-surface-border overflow-hidden mt-1">
-            <motion.div
+            <m.div
               className="h-full rounded-full bg-primary/70"
               initial={{ width: 0 }}
-              whileInView={{ width: shouldReduceMotion ? `${percentage}%` : `${percentage}%` }}
-              animate={shouldReduceMotion ? { width: `${percentage}%` } : undefined}
+              whileInView={{ width: `${percentage}%` }}
               viewport={{ once: true, margin: "-50px" }}
               transition={
                 shouldReduceMotion
