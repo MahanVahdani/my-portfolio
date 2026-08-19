@@ -28,7 +28,7 @@ const ExperienceCard = ({
         <div className="flex items-start gap-4">
           {/* Logo */}
           <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl border border-surface-border bg-background/40">
-            <Image src={logo} alt={company} fill className="object-cover" />
+            <Image src={logo} alt={company} fill sizes="56px" className="object-cover" />
           </div>
 
           {/* Company Info */}

@@ -1,14 +1,10 @@
-"use client";
-
 import { BriefcaseBusiness } from "lucide-react";
 import SectionBlock from "@ui/SectionBlock";
 import ExperienceCard from "@/components/sections/experience/ExperienceCard";
 import { portfolioConfig } from "@/config/portfolio.config";
-import { motion, useReducedMotion } from "framer-motion";
 import { MotionStagger, MotionItem } from "@/components/ui/motion";
 
 const ExperienceSection = () => {
-  const shouldReduceMotion = useReducedMotion();
 
   return (
     <SectionBlock
