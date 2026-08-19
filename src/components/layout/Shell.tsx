@@ -5,6 +5,7 @@ import SidebarProfile from "@/components/layout/SidebarProfile";
 import SidebarMobile from "@/components/layout/SidebarMobile";
 import GlassCard from "@/components/ui/GlassCard";
 import MotionProvider from "@/components/layout/MotionProvider";
+import BackToTop from "@/components/ui/BackToTop";
 
 const Shell = ({ children }: { children: ReactNode }) => {
   return (
@@ -24,7 +25,10 @@ const Shell = ({ children }: { children: ReactNode }) => {
           </aside>
 
           <main className="w-full min-w-0">
-            <MotionProvider>{children}</MotionProvider>
+            <MotionProvider>
+              {children}
+              <BackToTop />
+            </MotionProvider>
           </main>
 
           <aside className="hidden lg:block">
